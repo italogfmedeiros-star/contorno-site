@@ -1,5 +1,5 @@
-import Link from "next/link";
 import LeadForm from "./components/LeadForm";
+import Simulator from "./components/Simulator";
 
 const objections: [string, string][] = [
   ["tá caro", "e comparado a não resolver isso, quanto custa continuar do jeito que tá?"],
@@ -45,7 +45,7 @@ export default function Home() {
             <a href="#produto">O produto</a>
             <a href="#inteligencia">Inteligência</a>
             <a href="#desempenho">Desempenho</a>
-            <Link href="/simulate">Simulação</Link>
+            <a href="#simulacao">Simulação</a>
           </div>
           <a className="nav-cta" href="#captura">
             Acesso antecipado
@@ -71,9 +71,9 @@ export default function Home() {
           <a className="btn-signal" href="#captura">
             Quero acesso antecipado →
           </a>
-          <Link className="btn-outline" href="/simulate">
+          <a className="btn-outline" href="#simulacao">
             Testar a simulação
-          </Link>
+          </a>
         </div>
       </section>
 
@@ -234,6 +234,15 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* SIMULAÇÃO */}
+      <section className="how wrap" id="simulacao" style={{ paddingTop: 20 }}>
+        <div className="section-head">
+          <div className="section-kicker">SIMULAÇÃO · TESTE AGORA</div>
+          <h2>Apanhe da IA aqui, antes do cliente de verdade.</h2>
+        </div>
+        <Simulator />
       </section>
 
       {/* INTELIGÊNCIA */}
