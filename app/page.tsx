@@ -34,14 +34,23 @@ export default function Home() {
         <span className="blob blob-3" />
       </div>
 
-      <nav className="glass">
-        <div className="logo">
-          <span className="dot" />
-          contorno
+      <nav>
+        <div className="nav-inner">
+          <div className="logo">
+            <span className="dot" />
+            contorno
+          </div>
+          <div className="nav-links">
+            <a href="#problema">O problema</a>
+            <a href="#produto">O produto</a>
+            <a href="#inteligencia">Inteligência</a>
+            <a href="#desempenho">Desempenho</a>
+            <Link href="/simulate">Simulação</Link>
+          </div>
+          <a className="nav-cta" href="#captura">
+            Acesso antecipado
+          </a>
         </div>
-        <a className="nav-cta" href="#captura">
-          Acesso antecipado
-        </a>
       </nav>
 
       {/* HERO */}
@@ -76,7 +85,7 @@ export default function Home() {
       </div>
 
       {/* PROBLEMA */}
-      <section className="how wrap">
+      <section className="how wrap" id="problema">
         <div className="section-head">
           <div className="section-kicker">O PROBLEMA</div>
           <h2>Toda venda quebra no mesmo lugar: a objeção.</h2>
@@ -128,7 +137,7 @@ export default function Home() {
       </section>
 
       {/* PRODUTO */}
-      <section className="how wrap">
+      <section className="how wrap" id="produto">
         <div className="section-head">
           <div className="section-kicker">O PRODUTO</div>
           <h2>Três frentes. Do treino ao fechamento.</h2>
@@ -228,7 +237,7 @@ export default function Home() {
       </section>
 
       {/* INTELIGÊNCIA */}
-      <section className="how wrap" style={{ paddingTop: 20 }}>
+      <section className="how wrap" id="inteligencia" style={{ paddingTop: 20 }}>
         <div className="section-head">
           <div className="section-kicker">INTELIGÊNCIA COMERCIAL</div>
           <h2>Cada &quot;não&quot; vira número na mesa do gestor.</h2>
@@ -261,7 +270,7 @@ export default function Home() {
       </section>
 
       {/* DESEMPENHO / PROVA */}
-      <section className="proof wrap">
+      <section className="proof wrap" id="desempenho">
         <div className="section-head">
           <div className="section-kicker">DESEMPENHO</div>
           <h2>O que muda quando o treino vira rotina.</h2>
