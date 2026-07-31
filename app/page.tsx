@@ -1,4 +1,5 @@
 import Link from "next/link";
+import LeadForm from "./components/LeadForm";
 
 const objections: [string, string][] = [
   ["tá caro", "e comparado a não resolver isso, quanto custa continuar do jeito que tá?"],
@@ -38,30 +39,31 @@ export default function Home() {
           <span className="dot" />
           contorno
         </div>
-        <Link className="nav-cta" href="/simulate">
-          Testar grátis
-        </Link>
+        <a className="nav-cta" href="#captura">
+          Acesso antecipado
+        </a>
       </nav>
 
+      {/* HERO */}
       <section className="hero wrap">
-        <div className="eyebrow">DEVOPSIA · TREINO DE VENDAS COM IA</div>
+        <div className="eyebrow">DEVOPSIA · PLATAFORMA DE CONTORNO DE OBJEÇÕES</div>
         <h1>
           O CLIENTE <span className="strike">NÃO</span>
           <br />
-          VIRA <span className="win">SIM</span> ANTES
-          <br />
-          DAS 9H.
+          VIRA <span className="win">SIM</span>.
+          <br />A GENTE MUDA ISSO.
         </h1>
         <p className="hero-sub">
-          A IA finge ser o cliente mais difícil do seu mercado — e um segundo agente te sussurra o que dizer, em
-          tempo real, antes do &quot;vou pensar&quot; virar desculpa de novo.
+          O Contorno trata a objeção como o ativo central da venda: treina seu time contra o cliente mais
+          difícil do seu mercado, sopra a resposta certa na hora H e transforma cada &quot;não&quot; em dado
+          que aumenta a taxa de fechamento do próximo negócio.
         </p>
         <div className="hero-cta">
-          <Link className="btn-signal" href="/simulate">
-            Treinar minha equipe →
-          </Link>
+          <a className="btn-signal" href="#captura">
+            Quero acesso antecipado →
+          </a>
           <Link className="btn-outline" href="/simulate">
-            Ver simulação ao vivo
+            Testar a simulação
           </Link>
         </div>
       </section>
@@ -73,6 +75,41 @@ export default function Home() {
         </div>
       </div>
 
+      {/* PROBLEMA */}
+      <section className="how wrap">
+        <div className="section-head">
+          <div className="section-kicker">O PROBLEMA</div>
+          <h2>Toda venda quebra no mesmo lugar: a objeção.</h2>
+        </div>
+        <div className="pain-grid">
+          <div className="pain-card glass">
+            <div className="n">ANTES DA VENDA</div>
+            <h3>Sem onde treinar</h3>
+            <p>
+              O vendedor pratica objeção no cliente real — e queima pipeline. O único treino que teve foi o
+              gestor lendo um script uma vez, no onboarding.
+            </p>
+          </div>
+          <div className="pain-card glass">
+            <div className="n">DURANTE A VENDA</div>
+            <h3>Sozinho na hora H</h3>
+            <p>
+              Quando a objeção aparece ao vivo, a melhor resposta existe em algum lugar do time — mas não na
+              cabeça dele naquele segundo.
+            </p>
+          </div>
+          <div className="pain-card glass">
+            <div className="n">DEPOIS DA VENDA</div>
+            <h3>Tudo se perde</h3>
+            <p>
+              As objeções que mataram negócios evaporam. Ninguém sabe dizer quais mais matam, em qual perfil
+              de cliente, nem o que o melhor vendedor respondeu pra virar o jogo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* STAT */}
       <section className="paper">
         <div className="wrap">
           <div className="stat-card glass">
@@ -90,42 +127,36 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PRODUTO */}
       <section className="how wrap">
         <div className="section-head">
-          <div className="section-kicker">COMO FUNCIONA</div>
-          <h2>Três agentes. Uma conversa. Nenhuma desculpa.</h2>
+          <div className="section-kicker">O PRODUTO</div>
+          <h2>Três frentes. Do treino ao fechamento.</h2>
         </div>
 
         <div className="steps">
           <div className="step glass">
             <div className="step-num mono">01</div>
             <div className="step-body">
-              <h3>A IA vira o cliente que te derruba</h3>
+              <h3>O Treinador</h3>
               <p>
-                Persona configurada com o perfil, tom e objeções reais do seu setor — não um roteiro genérico de
-                call center.
+                A IA vira o cliente que te derruba. Seu time treina vendendo pra ela — em texto ou voz, do
+                nível fácil ao impossível — e sai de cada sessão com nota, pontos cegos e um plano de treino
+                pro dia seguinte.
               </p>
+              <div className="tags">
+                <span className="tag">texto e voz</span>
+                <span className="tag">dica em tempo real</span>
+                <span className="tag">nota por sessão</span>
+              </div>
             </div>
             <div className="mock">
               <div className="mock-line">
                 <span className="mock-tag">cliente</span>
                 <div className="mock-bubble">
-                  &quot;O valor tá bem acima do que eu pago hoje. Não sei se vale a diferença.&quot;
+                  &quot;Tá bem acima do que pago hoje. Não sei se vale a diferença.&quot;
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="step glass">
-            <div className="step-num mono">02</div>
-            <div className="step-body">
-              <h3>Um segundo agente sussurra a saída</h3>
-              <p>
-                Enquanto você responde, o coach analisa a conversa e te orienta sem interromper — texto ou voz,
-                sua escolha.
-              </p>
-            </div>
-            <div className="mock">
               <div className="mock-line">
                 <span className="mock-tag">coach</span>
                 <div className="mock-bubble coach">
@@ -136,16 +167,59 @@ export default function Home() {
           </div>
 
           <div className="step glass">
-            <div className="step-num mono">03</div>
+            <div className="step-num mono">02</div>
             <div className="step-body">
-              <h3>Sai número, não opinião de gestor</h3>
-              <p>Cada sessão vira relatório: onde travou, onde recuperou, e o que treinar amanhã de manhã.</p>
+              <h3>O Copiloto ao vivo</h3>
+              <p>
+                Na conversa real com o cliente, o Contorno detecta a objeção na hora e sussurra a saída na
+                tela do vendedor. A resposta do melhor closer do time, disponível pra todo mundo, em tempo
+                real.
+              </p>
+              <div className="tags">
+                <span className="tag">na venda real</span>
+                <span className="tag">resposta na tela</span>
+                <span className="tag">privacidade garantida</span>
+              </div>
             </div>
             <div className="mock">
               <div className="mock-line">
-                <span className="mock-tag">relatório</span>
+                <span className="mock-tag">cliente</span>
+                <div className="mock-bubble">&quot;Preciso falar com meu sócio antes de decidir.&quot;</div>
+              </div>
+              <div className="mock-line">
+                <span className="mock-tag">ao vivo</span>
+                <div className="mock-bubble coach">
+                  Objeção de autoridade. Pergunte: &quot;o que ele vai perguntar que eu ainda não
+                  respondi?&quot;
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="step glass">
+            <div className="step-num mono">03</div>
+            <div className="step-body">
+              <h3>O Closer autônomo</h3>
+              <p>
+                Uma IA humanizada que conduz a venda sozinha — contorna objeção, qualifica e avança o negócio
+                por texto ou voz. Não é chatbot de FAQ: é um closer treinado no jeito que a sua empresa vende.
+              </p>
+              <div className="tags">
+                <span className="tag">vende sozinho</span>
+                <span className="tag">inbound 24/7</span>
+                <span className="tag">com as suas regras</span>
+              </div>
+            </div>
+            <div className="mock">
+              <div className="mock-line">
+                <span className="mock-tag">cliente</span>
+                <div className="mock-bubble">&quot;Vou pensar e te retorno.&quot;</div>
+              </div>
+              <div className="mock-line">
+                <span className="mock-tag">closer</span>
                 <div className="mock-bubble you">
-                  Fechamento: 41%. Ponto cego: você não explorou &quot;fornecedor atual&quot;.
+                  &quot;Faz sentido. Só pra eu não te deixar no escuro: o que exatamente falta pra decidir
+                  hoje, e não daqui a 3 meses?&quot;
                 </div>
               </div>
             </div>
@@ -153,10 +227,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* INTELIGÊNCIA */}
+      <section className="how wrap" style={{ paddingTop: 20 }}>
+        <div className="section-head">
+          <div className="section-kicker">INTELIGÊNCIA COMERCIAL</div>
+          <h2>Cada &quot;não&quot; vira número na mesa do gestor.</h2>
+        </div>
+        <div className="intel-grid">
+          <div className="intel-card glass">
+            <h3>
+              Quais objeções <span style={{ color: "var(--signal)" }}>matam</span> seus negócios
+            </h3>
+            <p>Separando a objeção que só aparece da que de fato derruba a venda — no seu mercado.</p>
+          </div>
+          <div className="intel-card glass">
+            <h3>
+              O que <span style={{ color: "var(--win)" }}>funciona</span> contra cada uma
+            </h3>
+            <p>As respostas e analogias com maior taxa de virada, por objeção e por perfil de cliente.</p>
+          </div>
+          <div className="intel-card glass">
+            <h3>Quem trava, e onde</h3>
+            <p>
+              Sem ouvir ligação gravada: o gestor vê quem treinou, quem evoluiu e em qual objeção cada
+              vendedor ainda cai.
+            </p>
+          </div>
+          <div className="intel-card glass">
+            <h3>Quem está pronto pra fechar</h3>
+            <p>Sinais da conversa viram score de propensão — seu time prioriza quem decide.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* DESEMPENHO / PROVA */}
       <section className="proof wrap">
         <div className="section-head">
-          <div className="section-kicker">QUEM JÁ USA</div>
-          <h2>O gestor não precisa mais ouvir ligação pra saber quem travou.</h2>
+          <div className="section-kicker">DESEMPENHO</div>
+          <h2>O que muda quando o treino vira rotina.</h2>
         </div>
         <div className="proof-grid">
           <div className="wa-card glass">
@@ -199,18 +307,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="final wrap" id="final">
-        <div className="final-card glass glass-strong">
+      {/* CAPTURA */}
+      <section className="final wrap" id="captura">
+        <div className="lead-card glass glass-strong">
+          <div className="section-kicker">ACESSO ANTECIPADO</div>
           <h2>
-            Pare de perder venda
-            <br />
-            pro mesmo <span className="win">&quot;não&quot;</span> de sempre.
+            Pare de perder venda pro mesmo <span style={{ color: "var(--win)" }}>&quot;não&quot;</span> de
+            sempre.
           </h2>
-          <div className="hero-cta" style={{ justifyContent: "center" }}>
-            <Link className="btn-signal" href="/simulate">
-              Começar agora, é grátis →
-            </Link>
-          </div>
+          <p className="lead-sub">
+            Estamos liberando o Contorno por turmas. Deixe seus dados e entre na fila do seu setor — sem
+            cartão, sem compromisso.
+          </p>
+          <LeadForm />
         </div>
       </section>
 
@@ -219,7 +328,7 @@ export default function Home() {
           <span className="dot" />
           contorno
         </div>
-        <div className="fine">DEVOPSIA © 2026 — TREINO DE VENDAS COM IA</div>
+        <div className="fine">DEVOPSIA © 2026 — PLATAFORMA DE CONTORNO DE OBJEÇÕES</div>
       </footer>
     </>
   );

@@ -26,11 +26,13 @@ foram construídos.
 
 ```
 app/
-  page.tsx                 landing page
+  page.tsx                 landing page (narrativa comercial + formulário de captura)
+  components/LeadForm.tsx   formulário de acesso antecipado
   simulate/page.tsx         escolha de persona, chat e relatório (client component)
   api/agent/cliente/        rota do Agente Cliente
   api/agent/coach/          rota do Agente Coach
   api/agent/report/         rota do Agente de Relatório
+  api/leads/                rota de captura de leads (grava na tabela `leads`)
 lib/
   scenarios.ts               biblioteca de personas/cenários
   prompts.ts                 system prompts (com restrições anti scenario-drift, escopo §9)
@@ -54,8 +56,9 @@ npm run dev
 Variáveis de ambiente (`.env.local`):
 
 - `ANTHROPIC_API_KEY` — obrigatória para a simulação funcionar (Agente Cliente/Coach/Relatório).
-- `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — opcionais. Sem elas, a simulação
-  funciona normalmente, só não fica salva (persistência é best-effort, ver `lib/persistence.ts`).
+- `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` — opcionais para a simulação (que
+  funciona sem persistência), mas **obrigatórias para o formulário de captura de leads**: sem
+  banco a rota `/api/leads` responde 503 em vez de perder o contato silenciosamente.
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — reservada para quando o painel do gestor (Fase 4) precisar
   de acesso client-side com autenticação.
 
