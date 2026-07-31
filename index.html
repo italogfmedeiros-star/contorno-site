@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contorno — o cliente mais difícil do seu mercado, todo dia, antes das 9h</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0C;
+    --ink-2:#151517;
+    --paper:#F2EFE6;
+    --paper-dim:#DFDAC9;
+    --signal:#FF5A45;
+    --win:#00D9A3;
+    --text:#EFEEE9;
+    --text-dim:#8E8D8A;
+    --line: rgba(239,238,233,0.12);
+
+    /* glass tokens */
+    --glass-bg: rgba(255,255,255,0.045);
+    --glass-bg-strong: rgba(255,255,255,0.085);
+    --glass-border: rgba(255,255,255,0.12);
+    --glass-shadow: 0 8px 32px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink); color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px; line-height:1.5;
+    overflow-x:hidden;
+    position:relative;
+  }
+  .display{ font-family:'Bricolage Grotesque', sans-serif; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  ::selection{ background:var(--win); color:var(--ink); }
+
+  .wrap{ max-width:1180px; margin:0 auto; padding:0 22px; }
+  section{ position:relative; }
+
+  /* ---------- BACKGROUND BLOBS ---------- */
+  .bg-blobs{
+    position:fixed; inset:0; z-index:-1; overflow:hidden; pointer-events:none;
+  }
+  .blob{
+    position:absolute; border-radius:50%; filter:blur(110px); opacity:0.38;
+    will-change: transform;
+  }
+  .blob-1{ width:52vw; height:52vw; max-width:640px; max-height:640px; background:var(--win); top:-14%; left:-10%; animation: float1 26s ease-in-out infinite; }
+  .blob-2{ width:44vw; height:44vw; max-width:560px; max-height:560px; background:var(--signal); top:28%; right:-14%; animation: float2 30s ease-in-out infinite; }
+  .blob-3{ width:38vw; height:38vw; max-width:480px; max-height:480px; background:var(--paper-dim); opacity:0.16; bottom:-12%; left:22%; animation: float3 34s ease-in-out infinite; }
+  @keyframes float1{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(4%,6%); } }
+  @keyframes float2{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(-5%,4%); } }
+  @keyframes float3{ 0%,100%{ transform:translate(0,0); } 50%{ transform:translate(3%,-5%); } }
+  @media (prefers-reduced-motion: reduce){ .blob{ animation:none; } }
+
+  /* ---------- GLASS ---------- */
+  .glass{
+    background: var(--glass-bg);
+    border:1px solid var(--glass-border);
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+    box-shadow: var(--glass-shadow);
+    border-radius:20px;
+  }
+  .glass-strong{ background:var(--glass-bg-strong); }
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 14px 22px; position:sticky; top:14px; z-index:50;
+    max-width:1136px; width:calc(100% - 28px); margin:0 auto;
+    border-radius:100px;
+  }
+  .logo{ font-family:'Bricolage Grotesque'; font-weight:700; font-size:19px; letter-spacing:-0.02em; display:flex; align-items:center; gap:8px;}
+  .logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--win); box-shadow:0 0 12px var(--win); }
+  .nav-cta{
+    font-size:13.5px; font-weight:600; background:var(--text); color:var(--ink);
+    padding:10px 16px; border-radius:100px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: 96px 22px 0; }
+  .eyebrow{
+    font-family:'IBM Plex Mono'; font-size:12px; color:var(--win); letter-spacing:0.06em;
+    display:flex; align-items:center; gap:8px; margin-bottom:22px;
+  }
+  .eyebrow:before{ content:''; width:16px; height:1px; background:var(--win); }
+
+  h1{
+    font-family:'Bricolage Grotesque'; font-weight:800; letter-spacing:-0.03em;
+    font-size: clamp(42px, 11vw, 92px); line-height:0.98;
+  }
+  h1 .strike{ position:relative; color:var(--text-dim); }
+  h1 .strike:after{
+    content:''; position:absolute; left:-2%; right:-2%; top:50%; height:3px;
+    background:var(--signal); transform: rotate(-3deg);
+  }
+  h1 .win{ color:var(--win); }
+
+  .hero-sub{
+    font-size: clamp(15px,2.4vw,18px); color:var(--text-dim); max-width:520px;
+    margin: 26px 0 32px; line-height:1.6;
+  }
+  .hero-cta{ display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+  .btn-signal{
+    background:var(--win); color:var(--ink); font-weight:700; font-family:'Bricolage Grotesque';
+    padding:16px 26px; border-radius:100px; font-size:15px; display:inline-flex; align-items:center; gap:8px;
+    border:none; cursor:pointer; box-shadow:0 8px 24px rgba(0,217,163,0.28);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-signal:hover{ transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,217,163,0.36); }
+  .btn-outline{
+    padding:16px 22px; border-radius:100px; font-size:14px; font-weight:600;
+    color:var(--text-dim); cursor:pointer;
+    background:var(--glass-bg); border:1px solid var(--glass-border);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    transition: color .2s ease, background .2s ease;
+  }
+  .btn-outline:hover{ color:var(--text); background:var(--glass-bg-strong); }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee-wrap{
+    margin: 64px auto 0; max-width:1136px; width:calc(100% - 28px);
+    padding: 18px 0; overflow:hidden; white-space:nowrap;
+    border-radius:100px;
+  }
+  .marquee{ display:inline-flex; animation: scroll 34s linear infinite; }
+  @media (prefers-reduced-motion: reduce){ .marquee{ animation:none; } }
+  .marquee-item{ display:inline-flex; align-items:center; gap:14px; padding: 0 28px; font-family:'Bricolage Grotesque'; font-size: clamp(18px,3vw,26px); font-weight:600; }
+  .marquee-item .obj{ color:var(--text-dim); text-decoration: line-through; text-decoration-color: var(--signal); text-decoration-thickness:2px; }
+  .marquee-item .arrow{ color:var(--text-dim); font-size:16px; }
+  .marquee-item .fix{ color:var(--win); }
+  .marquee-item .sep{ color: var(--line); }
+  @keyframes scroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+
+  /* ---------- STAT SECTION ---------- */
+  .paper{ padding: 90px 22px; }
+  .stat-card{
+    padding: 48px 36px;
+    display:grid; grid-template-columns:1fr; gap:32px;
+  }
+  @media(min-width:820px){ .stat-card{ grid-template-columns: 1.1fr 0.9fr; align-items:center; gap:40px; } }
+  .stat-num{
+    font-family:'Bricolage Grotesque'; font-weight:800; font-size: clamp(64px,13vw,132px);
+    letter-spacing:-0.04em; line-height:0.9; color:var(--text);
+  }
+  .stat-num sup{ font-size:0.32em; top:-0.5em; color:var(--signal); }
+  .paper-copy p{ font-size:16.5px; color:var(--text-dim); line-height:1.65; max-width:440px; }
+  .paper-copy p strong{ color:var(--text); }
+  .paper-copy .cite{ font-family:'IBM Plex Mono'; font-size:11.5px; color:#67665F; margin-top:14px; display:block; }
+
+  /* ---------- HOW IT WORKS ---------- */
+  .how{ padding: 100px 22px 40px; }
+  .section-head{ margin-bottom:56px; max-width:600px; }
+  .section-kicker{ font-family:'IBM Plex Mono'; font-size:12px; color:var(--win); letter-spacing:0.06em; margin-bottom:12px; }
+  .section-head h2{ font-family:'Bricolage Grotesque'; font-weight:700; font-size: clamp(28px,5vw,44px); letter-spacing:-0.02em; }
+
+  .steps{ display:flex; flex-direction:column; gap:18px; }
+  .step{
+    display:grid; grid-template-columns: 60px 1fr; gap:20px; padding:32px;
+    transition: transform .25s ease, background .25s ease;
+  }
+  .step:hover{ transform:translateY(-3px); background:var(--glass-bg-strong); }
+  @media(min-width:760px){ .step{ grid-template-columns: 90px 1fr 1fr; gap:30px; } }
+  .step-num{ font-family:'Bricolage Grotesque'; font-weight:800; font-size:20px; color:var(--text-dim); }
+  .step-body h3{ font-family:'Bricolage Grotesque'; font-size:23px; font-weight:700; margin-bottom:10px; letter-spacing:-0.01em; }
+  .step-body p{ color:var(--text-dim); font-size:14.5px; line-height:1.6; max-width:400px; }
+
+  .mock{
+    background:rgba(0,0,0,0.22); border:1px solid var(--glass-border); border-radius:16px; padding:16px;
+    font-size:13px; margin-top: 18px;
+  }
+  @media(min-width:760px){ .mock{ margin-top:0; } }
+  .mock-line{ display:flex; gap:8px; margin-bottom:10px; align-items:flex-start; }
+  .mock-tag{ font-family:'IBM Plex Mono'; font-size:10px; color:var(--text-dim); padding-top:2px; flex:none; width:52px;}
+  .mock-bubble{ background:rgba(32,27,20,0.65); border:1px solid #3A2E1A; padding:9px 11px; border-radius:10px; color:#EFD9AE; font-size:13px; }
+  .mock-bubble.coach{ background:rgba(15,36,34,0.65); border-color:#154B44; color:#B7F2E2; }
+  .mock-bubble.you{ background:rgba(26,30,46,0.65); border-color:#2A2F45; color:var(--text); }
+
+  /* ---------- PROOF / WHATSAPP ---------- */
+  .proof{ padding: 40px 22px 100px; }
+  .proof-grid{ display:grid; gap:18px; grid-template-columns:1fr; }
+  @media(min-width:760px){ .proof-grid{ grid-template-columns: repeat(3,1fr); } }
+  .wa-card{
+    padding:22px;
+    transition: transform .25s ease, background .25s ease;
+  }
+  .wa-card:hover{ transform:translateY(-3px); background:var(--glass-bg-strong); }
+  .wa-head{ display:flex; align-items:center; gap:10px; margin-bottom:14px; }
+  .wa-avatar{ width:34px; height:34px; border-radius:50%; background:linear-gradient(135deg,var(--win),#0B0B0C); flex:none; }
+  .wa-name{ font-weight:600; font-size:13.5px; }
+  .wa-role{ font-size:11.5px; color:var(--text-dim); }
+  .wa-bubble{ background:rgba(220,248,198,0.92); color:#1B1B1B; font-size:13px; padding:9px 12px; border-radius:12px 12px 12px 2px; line-height:1.45; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final{ padding: 90px 22px 100px; }
+  .final-card{ text-align:center; padding: 64px 32px; }
+  .final h2{
+    font-family:'Bricolage Grotesque'; font-weight:800; letter-spacing:-0.03em;
+    font-size: clamp(36px,8vw,70px); line-height:1.02; max-width:800px; margin:0 auto 28px;
+  }
+  .final h2 .win{ color:var(--win); }
+
+  footer{
+    padding: 22px 22px; margin: 40px auto 22px; max-width:1136px; width:calc(100% - 28px);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+    border-radius:24px;
+  }
+  footer .logo{ font-size:15px; }
+  footer .fine{ font-size:12px; color:var(--text-dim); font-family:'IBM Plex Mono'; }
+</style>
+</head>
+<body>
+
+<div class="bg-blobs" aria-hidden="true">
+  <span class="blob blob-1"></span>
+  <span class="blob blob-2"></span>
+  <span class="blob blob-3"></span>
+</div>
+
+<nav class="glass">
+  <div class="logo"><span class="dot"></span>contorno</div>
+  <a class="nav-cta" href="#final">Testar grátis</a>
+</nav>
+
+<section class="hero wrap">
+  <div class="eyebrow">DEVOPSIA · TREINO DE VENDAS COM IA</div>
+  <h1>
+    O CLIENTE <span class="strike">NÃO</span><br>
+    VIRA <span class="win">SIM</span> ANTES<br>
+    DAS 9H.
+  </h1>
+  <p class="hero-sub">A IA finge ser o cliente mais difícil do seu mercado — e um segundo agente te sussurra o que dizer, em tempo real, antes do "vou pensar" virar desculpa de novo.</p>
+  <div class="hero-cta">
+    <button class="btn-signal">Treinar minha equipe →</button>
+    <button class="btn-outline">Ver simulação de 90s</button>
+  </div>
+</section>
+
+<div class="marquee-wrap glass">
+  <div class="marquee mono" id="marqueeTrack"></div>
+</div>
+
+<section class="paper">
+  <div class="wrap">
+    <div class="stat-card glass">
+      <div class="stat-num">73<sup>%</sup></div>
+      <div class="paper-copy">
+        <p>dos vendedores travam na <strong>mesma objeção</strong> há mais de seis meses — porque o único treino que tiveram foi o gestor lendo um script uma vez, no onboarding.</p>
+        <span class="cite">— com base em levantamento do setor de sales enablement, 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how wrap">
+  <div class="section-head">
+    <div class="section-kicker">COMO FUNCIONA</div>
+    <h2>Três agentes. Uma conversa. Nenhuma desculpa.</h2>
+  </div>
+
+  <div class="steps">
+    <div class="step glass">
+      <div class="step-num mono">01</div>
+      <div class="step-body">
+        <h3>A IA vira o cliente que te derruba</h3>
+        <p>Persona configurada com o perfil, tom e objeções reais do seu setor — não um roteiro genérico de call center.</p>
+      </div>
+      <div class="mock">
+        <div class="mock-line"><span class="mock-tag">cliente</span><div class="mock-bubble">"O valor tá bem acima do que eu pago hoje. Não sei se vale a diferença."</div></div>
+      </div>
+    </div>
+
+    <div class="step glass">
+      <div class="step-num mono">02</div>
+      <div class="step-body">
+        <h3>Um segundo agente sussurra a saída</h3>
+        <p>Enquanto você responde, o coach analisa a conversa e te orienta sem interromper — texto ou voz, sua escolha.</p>
+      </div>
+      <div class="mock">
+        <div class="mock-line"><span class="mock-tag">coach</span><div class="mock-bubble coach">Não entre no preço ainda. Pergunte o que pesa mais na comparação.</div></div>
+      </div>
+    </div>
+
+    <div class="step glass">
+      <div class="step-num mono">03</div>
+      <div class="step-body">
+        <h3>Sai número, não opinião de gestor</h3>
+        <p>Cada sessão vira relatório: onde travou, onde recuperou, e o que treinar amanhã de manhã.</p>
+      </div>
+      <div class="mock">
+        <div class="mock-line"><span class="mock-tag">relatório</span><div class="mock-bubble you">Fechamento: 41%. Ponto cego: você não explorou "fornecedor atual".</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof wrap">
+  <div class="section-head">
+    <div class="section-kicker">QUEM JÁ USA</div>
+    <h2>O gestor não precisa mais ouvir ligação pra saber quem travou.</h2>
+  </div>
+  <div class="proof-grid">
+    <div class="wa-card glass">
+      <div class="wa-head"><div class="wa-avatar"></div><div><div class="wa-name">Head de vendas · rede de clínicas</div><div class="wa-role">time de 14 SDRs</div></div></div>
+      <div class="wa-bubble">time inteiro treinando 15min por dia antes de bater o telefone. a objeção de preço parou de assustar</div>
+    </div>
+    <div class="wa-card glass">
+      <div class="wa-head"><div class="wa-avatar"></div><div><div class="wa-name">Gestora comercial · farma B2B</div><div class="wa-role">onboarding de novatos</div></div></div>
+      <div class="wa-bubble">rampa de vendedor novo caiu de 6 semanas pra 3. eles chegam na call real já tendo apanhado da IA umas 10 vezes</div>
+    </div>
+    <div class="wa-card glass">
+      <div class="wa-head"><div class="wa-avatar"></div><div><div class="wa-name">Sócio · distribuidora regional</div><div class="wa-role">time de 6 vendedores</div></div></div>
+      <div class="wa-bubble">o relatório mostrou que 4 dos 6 travavam no mesmo ponto. isso eu nunca ia descobrir ouvindo call</div>
+    </div>
+  </div>
+</section>
+
+<section class="final wrap" id="final">
+  <div class="final-card glass glass-strong">
+    <h2>Pare de perder venda<br>pro mesmo <span class="win">"não"</span> de sempre.</h2>
+    <div class="hero-cta" style="justify-content:center;">
+      <button class="btn-signal">Começar agora, é grátis →</button>
+    </div>
+  </div>
+</section>
+
+<footer class="glass">
+  <div class="logo"><span class="dot"></span>contorno</div>
+  <div class="fine">DEVOPSIA © 2026 — TREINO DE VENDAS COM IA</div>
+</footer>
+
+<script>
+  const objections = [
+    ["tá caro", "e comparado a não resolver isso, quanto custa continuar do jeito que tá?"],
+    ["vou pensar", "o que exatamente falta pra você decidir agora, e não daqui a 3 meses?"],
+    ["já uso outro fornecedor", "o que faria você trocar, se não fosse o preço?"],
+    ["preciso falar com meu sócio", "o que ele vai perguntar que eu ainda não respondi?"],
+    ["não é prioridade agora", "o que precisa acontecer pra virar prioridade — e quando isso acontece?"],
+    ["manda uma proposta que eu vejo", "prefiro fechar os detalhes com você agora, pra proposta já vir certa. tem 5 minutos?"]
+  ];
+  const track = document.getElementById('marqueeTrack');
+  function buildSet(){
+    return objections.map(([obj,fix]) =>
+      `<span class="marquee-item"><span class="obj">"${obj}"</span><span class="arrow">→</span><span class="fix">"${fix}"</span><span class="sep">///</span></span>`
+    ).join('');
+  }
+  track.innerHTML = buildSet() + buildSet();
+</script>
+
+</body>
+</html>
