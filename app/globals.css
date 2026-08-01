@@ -62,16 +62,27 @@ section{ position:relative; scroll-margin-top:90px; }
 
 /* ---------- NAV ---------- */
 nav{
-  display:flex; align-items:center; justify-content:space-between;
-  padding: 14px 22px; position:sticky; top:14px; z-index:50;
-  max-width:1136px; width:calc(100% - 28px); margin:0 auto;
-  border-radius:100px;
+  position:sticky; top:0; z-index:50;
+  width:100%; background:var(--ink-2);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1180px; margin:0 auto; padding: 14px 22px;
+  display:flex; align-items:center; justify-content:space-between; gap:18px;
 }
 .logo{ font-family: var(--font-display), sans-serif; font-weight:700; font-size:19px; letter-spacing:-0.02em; display:flex; align-items:center; gap:8px;}
 .logo .dot{ width:8px; height:8px; border-radius:50%; background:var(--win); box-shadow:0 0 12px var(--win); }
+.nav-links{ display:none; align-items:center; gap:4px; flex:1; justify-content:center; }
+@media(min-width:860px){ .nav-links{ display:flex; } }
+.nav-links a{
+  font-size:13.5px; font-weight:500; color:var(--text-dim);
+  padding:8px 13px; border-radius:100px;
+  transition: color .2s ease, background .2s ease;
+}
+.nav-links a:hover{ color:var(--text); background:rgba(255,255,255,0.06); }
 .nav-cta{
   font-size:13.5px; font-weight:600; background:var(--text); color:var(--ink);
-  padding:10px 16px; border-radius:100px;
+  padding:10px 16px; border-radius:100px; flex:none;
 }
 
 /* ---------- HERO ---------- */
@@ -267,6 +278,13 @@ footer .fine{ font-size:12px; color:var(--text-dim); font-family: var(--font-mon
 .lead-success p{ color:var(--text-dim); font-size:14.5px; line-height:1.6; max-width:420px; margin:0 auto; }
 
 /* ---------- SIMULATE ---------- */
+.sim-controls{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  flex-wrap:wrap; margin-bottom:16px;
+}
+.sim-live{ font-size:11px; color:var(--win); letter-spacing:0.05em; }
+.simulator .chat-panel{ min-height:46vh; }
+
 .sim-shell{ min-height:100dvh; display:flex; flex-direction:column; }
 .sim-header{
   display:flex; align-items:center; justify-content:space-between; gap:12px;
