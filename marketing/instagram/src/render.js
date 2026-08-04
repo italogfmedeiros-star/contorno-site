@@ -23,6 +23,27 @@ const FEED = {
   p3: "feed/post3-como-funciona.png",
   p4: "feed/post4-mercados.png",
   p5: "feed/post5-cta.png",
+  p6: "feed/post6-bastidor.png",
+};
+
+const CARROSSEL = {
+  c1: "carrossel/slide1-capa.png",
+  c2: "carrossel/slide2-ta-caro.png",
+  c3: "carrossel/slide3-vou-pensar.png",
+  c4: "carrossel/slide4-socio.png",
+  c5: "carrossel/slide5-email.png",
+  c6: "carrossel/slide6-cta.png",
+};
+
+const REELS = {
+  r1: "reels/capa1-ta-caro.png",
+  r2: "reels/capa2-vou-pensar.png",
+  r3: "reels/capa3-a-nota.png",
+  h1: "reels/destaque1-comece-aqui.png",
+  h2: "reels/destaque2-objecoes.png",
+  h3: "reels/destaque3-como-funciona.png",
+  h4: "reels/destaque4-mercados.png",
+  h5: "reels/destaque5-bastidor.png",
 };
 
 const STORIES = {
@@ -33,14 +54,29 @@ const STORIES = {
   s5: "stories/story5-cta.png",
 };
 
-/** Espera as webfonts carregarem e falha alto se alguma não subiu. */
+/**
+ * Espera as webfonts carregarem e falha alto se alguma não subiu.
+ *
+ * O navegador só busca as faces que a página realmente usa, então `check`
+ * sozinho acusaria falta numa página que não usa aquele peso — as capas de
+ * destaque, por exemplo, não têm texto nenhum. `load` força a busca antes,
+ * e aí a verificação só reprova o que de fato não existe.
+ */
 async function waitFonts(page) {
+  const ESPECIMES = {
+    bricolage: '800 40px "Bricolage Grotesque"',
+    inter: '600 20px "Inter"',
+    plex: '500 20px "IBM Plex Mono"',
+  };
   await page.evaluate(() => document.fonts.ready);
-  const ok = await page.evaluate(() => ({
-    bricolage: document.fonts.check('800 40px "Bricolage Grotesque"'),
-    inter: document.fonts.check('600 20px "Inter"'),
-    plex: document.fonts.check('500 20px "IBM Plex Mono"'),
-  }));
+  const ok = await page.evaluate(async (especimes) => {
+    const res = {};
+    for (const [nome, spec] of Object.entries(especimes)) {
+      await document.fonts.load(spec);
+      res[nome] = document.fonts.check(spec);
+    }
+    return res;
+  }, ESPECIMES);
   const faltando = Object.entries(ok).filter(([, v]) => !v).map(([k]) => k);
   if (faltando.length) throw new Error("fontes não carregaram: " + faltando.join(", "));
 }
@@ -77,15 +113,27 @@ async function buildPdf(browser) {
 
 (async () => {
   const alvo = process.argv[2] || "all";
-  const browser = await chromium.launch();
+  // CHROMIUM_PATH permite usar um Chromium já instalado na máquina, quando o
+  // que o Playwright espera não é o que está disponível.
+  const browser = await chromium.launch(
+    process.env.CHROMIUM_PATH ? { executablePath: process.env.CHROMIUM_PATH } : {}
+  );
   try {
     if (alvo === "all" || alvo === "feed") {
       console.log("feed:");
       await shootBoards(browser, "artes.html", FEED, { width: 1200, height: 1500 });
     }
+    if (alvo === "all" || alvo === "carrossel") {
+      console.log("carrossel:");
+      await shootBoards(browser, "carrossel.html", CARROSSEL, { width: 1200, height: 1500 });
+    }
     if (alvo === "all" || alvo === "stories") {
       console.log("stories:");
       await shootBoards(browser, "stories.html", STORIES, { width: 1200, height: 2000 });
+    }
+    if (alvo === "all" || alvo === "reels") {
+      console.log("reels:");
+      await shootBoards(browser, "reels.html", REELS, { width: 1200, height: 2000 });
     }
     // o PDF embute as artes, então roda por último
     if (alvo === "all" || alvo === "pdf") {

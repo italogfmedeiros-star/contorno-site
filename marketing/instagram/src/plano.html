@@ -176,6 +176,15 @@
 
   /* ---------- STORIES ---------- */
   .strow{ display:grid; grid-template-columns:repeat(5,1fr); gap:4mm; margin-bottom:8mm; }
+  .strow.six{ grid-template-columns:repeat(6,1fr); }
+  /* As capas de Reels aparecem aqui já recortadas na faixa 4:5 da grade do
+     perfil — que é como o público vai vê-las — e isso também mantém a página
+     dentro da altura útil. */
+  .strow.three{ grid-template-columns:repeat(3,1fr); gap:5mm; margin-bottom:6mm; }
+  .strow.three img{ aspect-ratio:4/5; object-fit:cover; }
+  .hlrow{ display:grid; grid-template-columns:repeat(5,1fr); gap:5mm; padding:0 6mm; }
+  .hlrow img{ width:100%; border-radius:50%; border:1px solid var(--line); display:block; }
+  .hlrow figcaption{ font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim2); text-align:center; margin-top:2mm; }
   .strow img{
     width:100%; border-radius:7px; border:1px solid var(--line); display:block;
     box-shadow:0 5px 16px rgba(27,25,20,.10);
@@ -247,13 +256,13 @@
       <span class="nm">Contorna AI</span>
     </div>
     <div class="kick">Plano de conteúdo · Instagram</div>
-    <h1 class="display">Estratégia de<br>lançamento em<br><span class="hl">5 posts</span>.</h1>
-    <p class="sub">Sequência completa para o lançamento do Contorna AI: da geração de expectativa à conversão. Cada post com objetivo, estratégia, legenda pronta e data sugerida.</p>
+    <h1 class="display">Estratégia de<br>lançamento em<br><span class="hl">6 posts</span><br>e um carrossel.</h1>
+    <p class="sub">Sequência completa para o lançamento do Contorna AI: da geração de expectativa à conversão, e o que vem depois dela. Cada peça com objetivo, estratégia, legenda pronta e data sugerida.</p>
     <div class="meta">
       <div><div class="k">Marca</div><div class="v">Contorna AI</div></div>
       <div><div class="k">Formato</div><div class="v">Feed 1080×1350</div></div>
-      <div><div class="k">Duração</div><div class="v">14 dias</div></div>
-      <div><div class="k">Peças</div><div class="v">5 feed + 5 stories</div></div>
+      <div><div class="k">Duração</div><div class="v">21 dias</div></div>
+      <div><div class="k">Peças</div><div class="v">6 feed + 6 carrossel + 5 stories + 8 reels/destaques</div></div>
     </div>
   </div>
 </section>
@@ -326,7 +335,7 @@
       <div class="kick">Cronograma</div>
       <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
     </div>
-    <h2 class="title display">Do teaser à conversão<br>em 14 dias.</h2>
+    <h2 class="title display">Do teaser à conversão,<br>e o que sustenta depois.</h2>
     <p class="lede">Datas sugeridas a partir de segunda, 10 de agosto. Ajuste livremente — o que importa é manter a ordem e o espaçamento entre as peças.</p>
 
     <table class="cal">
@@ -336,7 +345,7 @@
       <tbody>
         <tr>
           <td class="n">01</td>
-          <td class="when"><b>Seg, 10/08</b><span>D-4 · 12h</span></td>
+          <td class="when"><b>Seg, 10/08</b><span>D-3 · 12h</span></td>
           <td><span class="phase ph-pre">Expectativa</span></td>
           <td class="tit">Toda venda trava num “não”</td>
           <td class="obj">Gerar curiosidade e comentários sem revelar o produto</td>
@@ -369,6 +378,20 @@
           <td class="tit">Seu próximo “tá caro”…</td>
           <td class="obj">Converter quem acompanhou a sequência</td>
         </tr>
+        <tr>
+          <td class="n">06</td>
+          <td class="when"><b>Qui, 27/08</b><span>D+14 · 12h</span></td>
+          <td><span class="phase ph-post">Salvamento</span></td>
+          <td class="tit">4 objeções que travam a sua venda</td>
+          <td class="obj">Carrossel de utilidade pura — maximizar salvamento e alcance</td>
+        </tr>
+        <tr>
+          <td class="n">07</td>
+          <td class="when"><b>Dom, 30/08</b><span>D+17 · 19h</span></td>
+          <td><span class="phase ph-pre">Marca</span></td>
+          <td class="tit">Por que criamos o Contorna AI</td>
+          <td class="obj">Humanizar a marca depois da sequência comercial</td>
+        </tr>
       </tbody>
     </table>
 
@@ -378,6 +401,8 @@
       <p><b>Lançamento numa quinta pela manhã:</b> melhor janela de alcance para público B2B, que consome conteúdo profissional em dia útil.</p>
       <p><b>Educação e objeção no meio:</b> são os posts com maior taxa de salvamento. Se um deles performar acima da média, vale impulsionar antes do post 5.</p>
       <p><b>Conversão no domingo à noite:</b> momento em que gestores planejam a semana — decisão de compra B2B costuma nascer aí.</p>
+      <p><b>Carrossel depois da conversão:</b> quem não comprou no post 5 não some — passa a receber utilidade. O carrossel é o formato de maior salvamento, e salvamento é o sinal que mais devolve alcance nas semanas seguintes.</p>
+      <p><b>Bastidor por último:</b> só faz sentido contar por que a empresa existe depois que o público já sabe o que ela faz. Antes disso soa a discurso.</p>
     </div>
   </div>
   <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>03</span></div>
@@ -648,6 +673,161 @@ Configure em minutos e treine o primeiro cenário hoje.
   <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>08</span></div>
 </section>
 
+<!-- ============ POST 6 · BASTIDOR ============ -->
+<section class="page">
+  <div class="blob g" style="width:270px;height:270px;top:-100px;left:-85px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Post 06 · Bastidor · Dom 30/08</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Por que criamos o Contorna AI.</h2>
+    <div class="postwrap">
+      <div class="artcol">
+        <img src="../feed/post6-bastidor.png" alt="Post 6">
+        <div class="cap">1080 × 1350 · feed</div>
+      </div>
+      <div class="infocol">
+        <div class="block accent">
+          <h4>Estratégia</h4>
+          <p>Post de <b>marca, não de produto</b>. A essa altura o público já sabe o que o Contorna AI faz — o que falta é saber por que ele existe. A peça não pede clique: pede concordância. O sucesso aqui se mede em resposta no direct, não em tráfego.</p>
+        </div>
+        <div class="block">
+          <h4>Por que funciona</h4>
+          <ul>
+            <li>O contraste em duas colunas é lido em dois segundos e <b>todo vendedor se reconhece na coluna da esquerda</b></li>
+            <li>Falar do problema antes do produto tira o tom de anúncio, que o público já viu cinco vezes na sequência</li>
+            <li>É a peça mais <b>compartilhável entre colegas de time</b> — o gestor manda no grupo</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Métrica e ação</h4>
+          <div class="kpi">
+            <div><div class="k">Foco</div><div class="v">Compartilhamentos e direct</div></div>
+            <div><div class="k">Faça</div><div class="v">Responda cada direct pessoalmente</div></div>
+          </div>
+        </div>
+        <div class="caption">
+          <h4>Legenda</h4>
+          <div class="body">A gente treinou vendedor com roleplay por anos. E sempre teve o mesmo problema.
+
+O colega do outro lado da mesa quer que você acerte. Ele entrega o argumento, aceita a primeira resposta e encerra no primeiro “tá bom”. Todo mundo sai da sala achando que treinou.
+
+Aí chega o cliente real. Ele repete a objeção de três jeitos diferentes, volta no preço assim que você cede um centímetro, e às vezes só some — sem nunca dizer não.
+
+O Contorna AI nasceu dessa distância. É uma IA que não facilita, que insiste, e que no fim mostra exatamente onde você cedeu cedo demais.
+
+Treinar contra quem torce por você é confortável. Não é treino.</div>
+          <div class="tags">#vendas #objeções #comercial #gestãodevendas #timedevendas #roleplay #treinamentodevendas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>09</span></div>
+</section>
+
+<!-- ============ CARROSSEL ============ -->
+<section class="page">
+  <div class="blob o" style="width:290px;height:290px;top:-105px;right:-85px;"></div>
+  <div class="blob g" style="width:250px;height:250px;bottom:-90px;left:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Carrossel · 6 telas · Qui 27/08</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">4 objeções, 4 frases prontas.</h2>
+    <p class="lede">O carrossel é o formato de maior taxa de salvamento do Instagram, e salvamento é o sinal que mais devolve alcance nas semanas seguintes. Por isso esta peça entrega utilidade fechada — dá para aplicar sem contratar nada.</p>
+
+    <div class="strow six">
+      <figure><img src="../carrossel/slide1-capa.png" alt="Slide 1"><figcaption>01 · CAPA</figcaption></figure>
+      <figure><img src="../carrossel/slide2-ta-caro.png" alt="Slide 2"><figcaption>02 · TÁ CARO</figcaption></figure>
+      <figure><img src="../carrossel/slide3-vou-pensar.png" alt="Slide 3"><figcaption>03 · VOU PENSAR</figcaption></figure>
+      <figure><img src="../carrossel/slide4-socio.png" alt="Slide 4"><figcaption>04 · O SÓCIO</figcaption></figure>
+      <figure><img src="../carrossel/slide5-email.png" alt="Slide 5"><figcaption>05 · O E-MAIL</figcaption></figure>
+      <figure><img src="../carrossel/slide6-cta.png" alt="Slide 6"><figcaption>06 · CTA</figcaption></figure>
+    </div>
+
+    <div class="stgrid">
+      <div class="card">
+        <h3>A estrutura de cada tela</h3>
+        <ul class="chk">
+          <li><b>A objeção</b> riscada, grande, do jeito que o cliente fala</li>
+          <li><b>O que está por trás</b> — o diagnóstico que quase ninguém faz</li>
+          <li><b>O erro comum</b> — a resposta errada, pra pessoa se reconhecer</li>
+          <li><b>A virada</b> — a frase pronta, num cartão à parte</li>
+        </ul>
+        <p style="font-size:10.5px;color:var(--dim);line-height:1.55;margin-top:4mm;">
+          O erro vem antes do acerto de propósito: quem lê primeiro se reconhece na resposta errada e só então absorve a certa. É o que faz a pessoa salvar.
+        </p>
+      </div>
+
+      <div class="caption" style="margin-top:0;">
+        <h4>Legenda</h4>
+        <div class="body">Quatro frases que todo vendedor já ouviu. E as quatro respostas que quase ninguém dá.
+
+“Tá caro” quase nunca é sobre preço — é sobre não enxergar o retorno. Desconto não resolve isso, só confirma que o preço era inflado.
+
+“Vou pensar” é informação faltando. Se você não descobrir qual, ela nunca aparece.
+
+“Preciso falar com meu sócio” é erro de mapeamento: você apresentou pra quem não decide sozinho.
+
+“Me manda por e-mail” é o não educado. Sem próximo passo com data, morre na caixa de entrada.
+
+Salva esse post. Na próxima ligação você vai precisar de pelo menos uma delas.</div>
+        <div class="tags">#vendas #objeções #comercial #vendasb2b #técnicasdevendas #prospecção #salesenablement</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>10</span></div>
+</section>
+
+<!-- ============ REELS E DESTAQUES ============ -->
+<section class="page">
+  <div class="blob g" style="width:280px;height:280px;top:-100px;left:-85px;"></div>
+  <div class="blob o" style="width:250px;height:250px;bottom:-90px;right:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Reels e destaques</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Capas de Reels e<br>ícones de destaque.</h2>
+    <p class="lede">As capas cobrem os três temas com maior chance de alcance em vídeo. Os ícones organizam o perfil para quem chega pelo primeiro Reels e quer entender o que é isso.</p>
+
+    <div class="strow three">
+      <figure><img src="../reels/capa1-ta-caro.png" alt="Capa 1"><figcaption>“TÁ CARO”<br>objeção de preço</figcaption></figure>
+      <figure><img src="../reels/capa2-vou-pensar.png" alt="Capa 2"><figcaption>“VOU PENSAR”<br>objeção de tempo</figcaption></figure>
+      <figure><img src="../reels/capa3-a-nota.png" alt="Capa 3"><figcaption>A NOTA<br>como funciona</figcaption></figure>
+    </div>
+
+    <div class="stgrid" style="margin-bottom:7mm;">
+      <div class="card">
+        <h3>O recorte da grade</h3>
+        <p style="font-size:10.5px;color:var(--dim);line-height:1.55;">
+          O Reels é publicado em <b>1080 × 1920</b>, mas na grade do perfil aparece cortado numa faixa central de <b>1080 × 1350</b>. Todo o texto das capas está dentro dessa faixa — 285px de folga em cima e embaixo. A assinatura fica de fora de propósito: ela é para quem assiste o vídeo, não para a grade.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Como usar</h3>
+        <ul class="chk">
+          <li>Suba a capa em <b>“capa personalizada”</b> na publicação do Reels</li>
+          <li>Não deixe o Instagram escolher um frame — a grade perde a unidade</li>
+          <li>Os ícones de destaque são <b>1080 × 1080</b>, cortados em círculo</li>
+          <li>Nomeie os destaques com uma palavra só, para não truncar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hlrow">
+      <figure><img src="../reels/destaque1-comece-aqui.png" alt="Destaque 1"><figcaption>Comece aqui</figcaption></figure>
+      <figure><img src="../reels/destaque2-objecoes.png" alt="Destaque 2"><figcaption>Objeções</figcaption></figure>
+      <figure><img src="../reels/destaque3-como-funciona.png" alt="Destaque 3"><figcaption>Como funciona</figcaption></figure>
+      <figure><img src="../reels/destaque4-mercados.png" alt="Destaque 4"><figcaption>Mercados</figcaption></figure>
+      <figure><img src="../reels/destaque5-bastidor.png" alt="Destaque 5"><figcaption>Bastidor</figcaption></figure>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>11</span></div>
+</section>
+
 <!-- ============ STORIES ============ -->
 <section class="page">
   <div class="blob g" style="width:290px;height:290px;top:-105px;right:-85px;"></div>
@@ -724,7 +904,7 @@ Configure em minutos e treine o primeiro cenário hoje.
       </div>
     </div>
   </div>
-  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>09</span></div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>12</span></div>
 </section>
 
 <!-- ============ CHECKLIST ============ -->
@@ -756,6 +936,7 @@ Configure em minutos e treine o primeiro cenário hoje.
           <li>Publicar no <b>horário sugerido</b> do cronograma</li>
           <li>Responder comentários na <b>primeira hora</b> (empurra o alcance)</li>
           <li>Repostar no <b>stories</b> no mesmo dia</li>
+          <li>Usar <b>capa personalizada</b> em todo Reels</li>
           <li>Conferir se o <b>link da bio</b> está funcionando</li>
           <li>Anotar salvamentos e alcance para comparar as peças</li>
         </ul>
@@ -764,8 +945,8 @@ Configure em minutos e treine o primeiro cenário hoje.
 
     <div class="why" style="margin-top:0;">
       <h3>Reaproveitamento</h3>
-      <p><b>Stories:</b> cada arte funciona em 1080×1920 com margem extra em cima e embaixo — dá para criar os 5 em poucos minutos a partir dos mesmos elementos.</p>
-      <p><b>Carrossel:</b> os posts 3 e 4 rendem carrossel de 3 a 5 telas. No post 4, cada grupo de nichos vira uma tela; no post 3, cada critério de avaliação.</p>
+      <p><b>Stories:</b> os 5 acompanham os posts 1 a 5. Para o carrossel e o bastidor, republique a peça do feed no story com um sticker de link — não precisa de arte nova.</p>
+      <p><b>Carrossel:</b> o de 27/08 já está pronto. A mesma estrutura — objeção, o que está por trás, o erro comum, a virada — comporta quantas objeções o seu mercado tiver.</p>
       <p><b>Depois da sequência:</b> a mecânica “objeção → resposta que contorna” é conteúdo infinito. Um post por semana, sempre com uma objeção real do seu mercado, mantém o feed vivo sem reinventar formato.</p>
     </div>
 
@@ -774,7 +955,7 @@ Configure em minutos e treine o primeiro cenário hoje.
       <p>O post de lançamento manda tráfego direto para contorna.ai. Garanta que a <b>chave da API esteja configurada</b> e que o fluxo de avaliação esteja funcionando de ponta a ponta — um visitante que clica no dia do anúncio e encontra erro dificilmente volta.</p>
     </div>
   </div>
-  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>10</span></div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>13</span></div>
 </section>
 
 </body>
