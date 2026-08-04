@@ -26,7 +26,7 @@ equivalente em story, publicada no mesmo dia.
 
 | # | Data | Fase | Post | Objetivo |
 |---|---|---|---|---|
-| 1 | seg 10/08 | Expectativa | Toda venda trava num "não" | Curiosidade e comentários, sem revelar o produto |
+| 1 | seg 10/08 | Expectativa | A solução você vende, a objeção a gente contorna | Posicionar a marca sem revelar o produto |
 | 2 | qui 13/08 | Lançamento | Chegou o Contorna AI | Anunciar e mostrar o produto em 3 segundos |
 | 3 | dom 16/08 | Educação | Nota da rodada: 8.5 | Diferencial: avalia o que você responde |
 | 4 | qui 20/08 | Objeção | A objeção de quem vende seguro… | Quebrar o "IA não entende meu nicho" |
@@ -56,8 +56,9 @@ faz.
 Tipografia: **Bricolage Grotesque** (títulos, 800), **Inter** (corpo),
 **IBM Plex Mono** (rótulos e dados).
 
-Três regras que se repetem em todas as peças: o **"não" sempre aparece riscado**
-em `#E6482F`; os ícones são **de traço, monocromáticos**, herdando a cor do
+Três regras que se repetem em todas as peças: **quando há um "não", ele aparece
+riscado** em `#E6482F` (no post 1 não há — lá quem carrega o código é o verbo
+"contorna", em verde de acerto); os ícones são **de traço, monocromáticos**, herdando a cor do
 contexto; e o conteúdo dos stories nunca invade as faixas de interface do
 Instagram (~270px no topo, ~300px no rodapé).
 
