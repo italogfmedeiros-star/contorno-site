@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="./fonts-print/fonts.css" rel="stylesheet">
+<style>
+  @page { size: A4 portrait; margin: 0; }
+  :root{
+    --bg:#F7F5F0;
+    --paper:#FFFFFF;
+    --text:#1B1914;
+    --dim:#7B776C;
+    --dim2:#9B978C;
+    --accent:#EF4E17;
+    --accent-soft:rgba(239,78,23,.08);
+    --win:#00B487;
+    --win-ink:#00815F;
+    --win-soft:rgba(0,180,135,.09);
+    --dot:#E6482F;
+    --line:rgba(27,25,20,.11);
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{ font-family:'Inter',sans-serif; color:var(--text); background:#999; }
+  .page{
+    width:210mm; height:297mm; background:var(--bg);
+    position:relative; overflow:hidden;
+    page-break-after:always; break-after:page;
+    padding:18mm 16mm 16mm;
+    display:flex; flex-direction:column;
+  }
+  .page:last-child{ page-break-after:auto; break-after:auto; }
+  .display{ font-family:'Bricolage Grotesque',sans-serif; }
+  .mono{ font-family:'IBM Plex Mono',monospace; }
+  .blob{ position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; z-index:0; }
+  .blob.g{ background:rgba(0,180,135,.26); }
+  .blob.o{ background:rgba(239,78,23,.18); }
+  .z{ position:relative; z-index:1; }
+
+  /* ---------- CAPA ---------- */
+  .cover{ justify-content:center; align-items:flex-start; padding:24mm 18mm; }
+  .cover .lock{ display:flex; align-items:center; gap:14px; margin-bottom:28mm; }
+  .cover .lock svg{ width:54px; height:54px; }
+  .cover .lock .nm{ font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:30px; letter-spacing:-.02em; }
+  .cover .kick{
+    font-family:'IBM Plex Mono',monospace; font-size:11px; letter-spacing:.20em; text-transform:uppercase;
+    color:var(--accent); display:flex; align-items:center; gap:12px; margin-bottom:16px;
+  }
+  .cover .kick:before{ content:''; width:28px; height:2px; background:var(--accent); }
+  .cover h1{
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:58px;
+    line-height:1.02; letter-spacing:-.04em; max-width:150mm;
+  }
+  .cover h1 .hl{ color:var(--accent); }
+  .cover .sub{ color:var(--dim); font-size:15px; line-height:1.6; margin-top:22px; max-width:120mm; }
+  .cover .meta{
+    margin-top:auto; padding-top:22mm; display:flex; gap:0; border-top:1px solid var(--line);
+  }
+  .cover .meta div{ flex:1; padding-top:14px; }
+  .cover .meta .k{ font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim2); margin-bottom:6px; }
+  .cover .meta .v{ font-size:13px; font-weight:600; }
+
+  /* ---------- CABEÇALHO PADRÃO ---------- */
+  .head{ display:flex; align-items:center; justify-content:space-between; margin-bottom:9mm; }
+  .head .kick{
+    font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--accent); display:flex; align-items:center; gap:10px;
+  }
+  .head .kick:before{ content:''; width:22px; height:2px; background:var(--accent); }
+  .head .brand{ display:flex; align-items:center; gap:8px; font-size:11px; color:var(--dim2); }
+  .head .brand svg{ width:18px; height:18px; }
+  h2.title{
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:30px;
+    line-height:1.1; letter-spacing:-.03em; margin-bottom:5mm;
+  }
+  .lede{ color:var(--dim); font-size:12.5px; line-height:1.6; max-width:150mm; margin-bottom:8mm; }
+
+  /* ---------- IDENTIDADE ---------- */
+  .idgrid{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+  .card{
+    background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:6mm;
+  }
+  .card h3{
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--dim2); margin-bottom:5mm;
+  }
+  .swatches{ display:flex; flex-direction:column; gap:9px; }
+  .sw{ display:flex; align-items:center; gap:11px; }
+  .sw .chip{ width:34px; height:34px; border-radius:9px; flex:none; border:1px solid rgba(0,0,0,.07); }
+  .sw .nm{ font-size:12px; font-weight:600; line-height:1.3; }
+  .sw .hex{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; color:var(--dim2); }
+  .sw .use{ margin-left:auto; font-size:10px; color:var(--dim2); text-align:right; max-width:34mm; line-height:1.35; }
+  .typ{ display:flex; flex-direction:column; gap:5mm; }
+  .typ .row{ border-bottom:1px solid var(--line); padding-bottom:4mm; }
+  .typ .row:last-child{ border-bottom:none; padding-bottom:0; }
+  .typ .spec{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--dim2); margin-bottom:5px; letter-spacing:.08em; }
+  .typ .demo-a{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:26px; letter-spacing:-.03em; }
+  .typ .demo-b{ font-family:'Inter',sans-serif; font-size:14px; }
+  .typ .demo-c{ font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.05em; }
+  .voice li{ list-style:none; font-size:12px; line-height:1.55; padding-left:16px; position:relative; margin-bottom:8px; color:var(--dim); }
+  .voice li:before{ content:''; position:absolute; left:0; top:7px; width:6px; height:6px; border-radius:99px; background:var(--win); }
+  .voice li b{ color:var(--text); }
+  .logo-box{ display:flex; align-items:center; justify-content:center; gap:8mm; padding:6mm 0 2mm; }
+  .logo-box svg{ width:64px; height:64px; }
+  .logo-box .txt{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:34px; letter-spacing:-.03em; }
+  .logo-note{ font-size:11px; color:var(--dim); line-height:1.55; text-align:center; margin-top:3mm; }
+
+  /* ---------- CALENDÁRIO ---------- */
+  table.cal{ width:100%; border-collapse:collapse; font-size:11.5px; }
+  table.cal th{
+    text-align:left; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--dim2); padding:0 8px 9px 0; border-bottom:1.5px solid var(--line);
+    font-weight:500;
+  }
+  table.cal td{ padding:11px 8px 11px 0; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.45; }
+  table.cal .n{
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:15px;
+    color:var(--accent); width:9mm;
+  }
+  table.cal .when b{ display:block; font-size:12.5px; }
+  table.cal .when span{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--dim2); }
+  table.cal .tit{ font-weight:600; }
+  table.cal .obj{ color:var(--dim); }
+  .phase{
+    display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:.1em;
+    text-transform:uppercase; padding:3px 8px; border-radius:99px; white-space:nowrap;
+  }
+  .ph-pre{ background:var(--accent-soft); color:var(--accent); border:1px solid rgba(239,78,23,.25); }
+  .ph-launch{ background:var(--win-soft); color:var(--win-ink); border:1px solid rgba(0,180,135,.3); }
+  .ph-post{ background:rgba(27,25,20,.05); color:var(--dim); border:1px solid var(--line); }
+  .why{ margin-top:7mm; background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:6mm; }
+  .why h3{ font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--dim2); margin-bottom:4mm; }
+  .why p{ font-size:11.5px; line-height:1.65; color:var(--dim); margin-bottom:7px; }
+  .why p:last-child{ margin-bottom:0; }
+  .why b{ color:var(--text); }
+
+  /* ---------- PÁGINA DE POST ---------- */
+  .postwrap{ display:grid; grid-template-columns:58mm 1fr; gap:7mm; flex:1; min-height:0; }
+  .artcol img{ width:58mm; border-radius:10px; border:1px solid var(--line); display:block; box-shadow:0 6px 22px rgba(27,25,20,.10); }
+  .artcol .cap{
+    font-family:'IBM Plex Mono',monospace; font-size:8.5px; color:var(--dim2);
+    text-align:center; margin-top:3mm; letter-spacing:.06em;
+  }
+  .infocol{ display:flex; flex-direction:column; gap:4.5mm; min-width:0; }
+  .block{ background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:4.5mm 5mm; }
+  .block.accent{ border-left:3px solid var(--accent); }
+  .block.win{ border-left:3px solid var(--win); }
+  .block h4{
+    font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--dim2); margin-bottom:3mm;
+  }
+  .block p{ font-size:11.5px; line-height:1.6; color:var(--dim); }
+  .block p b, .block li b{ color:var(--text); }
+  .block ul{ margin:0; padding:0; list-style:none; }
+  .block li{ font-size:11.5px; line-height:1.55; color:var(--dim); padding-left:14px; position:relative; margin-bottom:6px; }
+  .block li:last-child{ margin-bottom:0; }
+  .block li:before{ content:''; position:absolute; left:0; top:6px; width:5px; height:5px; border-radius:99px; background:var(--accent); }
+  .block.win li:before{ background:var(--win); }
+  .kpi{ display:flex; gap:4mm; }
+  .kpi div{ flex:1; }
+  .kpi .k{ font-family:'IBM Plex Mono',monospace; font-size:8.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--dim2); margin-bottom:4px; }
+  .kpi .v{ font-size:11.5px; font-weight:600; line-height:1.4; }
+  .caption{
+    background:#FFF; border:1px solid var(--line); border-radius:12px; padding:4.5mm 5mm; flex:1;
+    display:flex; flex-direction:column; min-height:0;
+  }
+  .caption h4{
+    font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--dim2); margin-bottom:3mm; display:flex; align-items:center; gap:7px;
+  }
+  .caption h4:after{ content:''; flex:1; height:1px; background:var(--line); }
+  .caption .body{ font-size:11px; line-height:1.62; white-space:pre-line; color:var(--text); }
+  .caption .tags{
+    margin-top:auto; padding-top:3.5mm; border-top:1px dashed var(--line);
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--accent); line-height:1.6; word-break:break-word;
+  }
+
+  /* ---------- STORIES ---------- */
+  .strow{ display:grid; grid-template-columns:repeat(5,1fr); gap:4mm; margin-bottom:8mm; }
+  .strow img{
+    width:100%; border-radius:7px; border:1px solid var(--line); display:block;
+    box-shadow:0 5px 16px rgba(27,25,20,.10);
+  }
+  .strow figcaption{
+    font-family:'IBM Plex Mono',monospace; font-size:7.5px; color:var(--dim2);
+    text-align:center; margin-top:2.5mm; letter-spacing:.05em; line-height:1.4;
+  }
+  .stgrid{ display:grid; grid-template-columns:62mm 1fr; gap:6mm; }
+  .diagram{
+    width:38mm; height:67mm; margin:0 auto; border-radius:8px; overflow:hidden;
+    border:1px solid var(--line); display:flex; flex-direction:column; background:var(--bg);
+  }
+  .diagram .band{
+    background:repeating-linear-gradient(45deg, rgba(239,78,23,.10) 0 4px, rgba(239,78,23,.04) 4px 8px);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    font-family:'IBM Plex Mono',monospace; font-size:6.5px; color:var(--accent); line-height:1.3; padding:0 3px;
+  }
+  .diagram .band.top{ height:14%; border-bottom:1px dashed rgba(239,78,23,.45); }
+  .diagram .band.bot{ height:16%; border-top:1px dashed rgba(239,78,23,.45); }
+  .diagram .mid{
+    flex:1; background:var(--win-soft); display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono',monospace; font-size:7px; color:var(--win-ink); letter-spacing:.12em;
+  }
+  .diag-cap{ font-size:10px; color:var(--dim); line-height:1.55; margin-top:4mm; text-align:center; }
+  .sticks{ display:flex; flex-direction:column; }
+  .stick-row{
+    display:grid; grid-template-columns:11mm 30mm 1fr; gap:4mm; align-items:baseline;
+    padding:8px 0; border-bottom:1px solid var(--line); font-size:10.5px; line-height:1.45;
+  }
+  .stick-row:last-child{ border-bottom:none; }
+  .stick-row .sn{ font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:13px; color:var(--accent); }
+  .stick-row .st{ font-weight:600; }
+  .stick-row .sd{ color:var(--dim); }
+
+  /* ---------- CHECKLIST FINAL ---------- */
+  .two{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+  .chk li{ list-style:none; font-size:11.5px; line-height:1.5; color:var(--dim); padding-left:20px; position:relative; margin-bottom:9px; }
+  .chk li:before{
+    content:''; position:absolute; left:0; top:1px; width:13px; height:13px; border-radius:4px;
+    border:1.5px solid var(--line); background:#fff;
+  }
+  .chk li b{ color:var(--text); }
+  .nextbox{
+    margin-top:auto; background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--win);
+    border-radius:12px; padding:6mm;
+  }
+  .nextbox h3{ font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin-bottom:3mm; }
+  .nextbox p{ font-size:11.5px; line-height:1.6; color:var(--dim); }
+
+  /* ---------- RODAPÉ ---------- */
+  .foot{
+    position:absolute; left:16mm; right:16mm; bottom:9mm;
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace; font-size:8.5px; color:var(--dim2);
+    padding-top:4mm; border-top:1px solid var(--line);
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. CAPA ============ -->
+<section class="page cover">
+  <div class="blob g" style="width:340px;height:340px;top:-90px;right:-70px;"></div>
+  <div class="blob o" style="width:300px;height:300px;bottom:-80px;left:-70px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="lock">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+      <span class="nm">Contorna AI</span>
+    </div>
+    <div class="kick">Plano de conteúdo · Instagram</div>
+    <h1 class="display">Estratégia de<br>lançamento em<br><span class="hl">5 posts</span>.</h1>
+    <p class="sub">Sequência completa para o lançamento do Contorna AI: da geração de expectativa à conversão. Cada post com objetivo, estratégia, legenda pronta e data sugerida.</p>
+    <div class="meta">
+      <div><div class="k">Marca</div><div class="v">Contorna AI</div></div>
+      <div><div class="k">Formato</div><div class="v">Feed 1080×1350</div></div>
+      <div><div class="k">Duração</div><div class="v">14 dias</div></div>
+      <div><div class="k">Peças</div><div class="v">5 feed + 5 stories</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. IDENTIDADE VISUAL ============ -->
+<section class="page">
+  <div class="blob g" style="width:280px;height:280px;top:-100px;right:-90px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Identidade visual</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">O sistema visual aplicado<br>em todas as peças.</h2>
+    <p class="lede">Extraído diretamente do site publicado em contorna.ai. Toda arte do plano segue estes tokens — mantendo consistência entre site, perfil e feed.</p>
+
+    <div class="card" style="margin-bottom:6mm;">
+      <h3>A marca</h3>
+      <div class="logo-box">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="txt">Contorna AI</span>
+      </div>
+      <p class="logo-note">O <b>“C” verde contorna o ponto laranja</b> — a marca desviando do obstáculo. O ponto representa a objeção; o arco aberto, o caminho que a contorna. Conceito que se repete no copy: o “não” sempre aparece riscado.</p>
+    </div>
+
+    <div class="idgrid">
+      <div class="card">
+        <h3>Paleta</h3>
+        <div class="swatches">
+          <div class="sw"><span class="chip" style="background:#00B487"></span><span><span class="nm">Verde marca</span><br><span class="hex">#00B487</span></span><span class="use">Logo, acertos, notas</span></div>
+          <div class="sw"><span class="chip" style="background:#EF4E17"></span><span><span class="nm">Laranja ação</span><br><span class="hex">#EF4E17</span></span><span class="use">CTAs, destaques, rótulos</span></div>
+          <div class="sw"><span class="chip" style="background:#E6482F"></span><span><span class="nm">Ponto / objeção</span><br><span class="hex">#E6482F</span></span><span class="use">O ponto da logo, riscos</span></div>
+          <div class="sw"><span class="chip" style="background:#F7F5F0"></span><span><span class="nm">Fundo creme</span><br><span class="hex">#F7F5F0</span></span><span class="use">Base de todas as artes</span></div>
+          <div class="sw"><span class="chip" style="background:#1B1914"></span><span><span class="nm">Texto</span><br><span class="hex">#1B1914</span></span><span class="use">Títulos e corpo</span></div>
+          <div class="sw"><span class="chip" style="background:#7B776C"></span><span><span class="nm">Texto suave</span><br><span class="hex">#7B776C</span></span><span class="use">Apoio, legendas</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Tipografia</h3>
+        <div class="typ">
+          <div class="row">
+            <div class="spec">BRICOLAGE GROTESQUE · 800</div>
+            <div class="demo-a">Toda venda trava</div>
+          </div>
+          <div class="row">
+            <div class="spec">INTER · 400 / 600</div>
+            <div class="demo-b">Corpo de texto e apoio nas artes.</div>
+          </div>
+          <div class="row">
+            <div class="spec">IBM PLEX MONO · 500</div>
+            <div class="demo-c">RÓTULOS · DADOS</div>
+          </div>
+        </div>
+        <h3 style="margin-top:6mm;">Tom de voz</h3>
+        <ul class="voice">
+          <li><b>Direto e provocador.</b> Fala a frase que o vendedor teme ouvir.</li>
+          <li><b>Sem jargão de IA.</b> O foco é a venda, não a tecnologia.</li>
+          <li><b>O “não” é sempre visual</b> — riscado, contornado, superado.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>02</span></div>
+</section>
+
+<!-- ============ 3. CALENDÁRIO ============ -->
+<section class="page">
+  <div class="blob o" style="width:300px;height:300px;top:-110px;left:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Cronograma</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Do teaser à conversão<br>em 14 dias.</h2>
+    <p class="lede">Datas sugeridas a partir de segunda, 10 de agosto. Ajuste livremente — o que importa é manter a ordem e o espaçamento entre as peças.</p>
+
+    <table class="cal">
+      <thead>
+        <tr><th></th><th style="width:26mm">Data</th><th style="width:24mm">Fase</th><th>Post</th><th style="width:52mm">Objetivo</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="n">01</td>
+          <td class="when"><b>Seg, 10/08</b><span>D-4 · 12h</span></td>
+          <td><span class="phase ph-pre">Expectativa</span></td>
+          <td class="tit">Toda venda trava num “não”</td>
+          <td class="obj">Gerar curiosidade e comentários sem revelar o produto</td>
+        </tr>
+        <tr>
+          <td class="n">02</td>
+          <td class="when"><b>Qui, 13/08</b><span>D-0 · 9h</span></td>
+          <td><span class="phase ph-launch">Lançamento</span></td>
+          <td class="tit">Chegou o Contorna AI</td>
+          <td class="obj">Anunciar e mostrar o produto em 3 segundos</td>
+        </tr>
+        <tr>
+          <td class="n">03</td>
+          <td class="when"><b>Dom, 16/08</b><span>D+3 · 19h</span></td>
+          <td><span class="phase ph-post">Educação</span></td>
+          <td class="tit">Nota da rodada: 8.5</td>
+          <td class="obj">Explicar o diferencial: avalia o que você responde</td>
+        </tr>
+        <tr>
+          <td class="n">04</td>
+          <td class="when"><b>Qui, 20/08</b><span>D+7 · 12h</span></td>
+          <td><span class="phase ph-post">Objeção</span></td>
+          <td class="tit">A objeção de quem vende seguro…</td>
+          <td class="obj">Quebrar o “IA não entende meu nicho”</td>
+        </tr>
+        <tr>
+          <td class="n">05</td>
+          <td class="when"><b>Dom, 23/08</b><span>D+10 · 19h</span></td>
+          <td><span class="phase ph-post">Conversão</span></td>
+          <td class="tit">Seu próximo “tá caro”…</td>
+          <td class="obj">Converter quem acompanhou a sequência</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="why">
+      <h3>Por que esse ritmo</h3>
+      <p><b>Teaser 4 dias antes:</b> tempo suficiente para criar expectativa, curto o bastante para não esfriar. O comentário que ele gera aquece o alcance do post de lançamento.</p>
+      <p><b>Lançamento numa quinta pela manhã:</b> melhor janela de alcance para público B2B, que consome conteúdo profissional em dia útil.</p>
+      <p><b>Educação e objeção no meio:</b> são os posts com maior taxa de salvamento. Se um deles performar acima da média, vale impulsionar antes do post 5.</p>
+      <p><b>Conversão no domingo à noite:</b> momento em que gestores planejam a semana — decisão de compra B2B costuma nascer aí.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>03</span></div>
+</section>
+
+<!-- ============ POST 1 ============ -->
+<section class="page">
+  <div class="blob g" style="width:260px;height:260px;top:-100px;right:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Post 01 · Expectativa · Seg 10/08</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Toda venda trava num “não”.</h2>
+    <div class="postwrap">
+      <div class="artcol">
+        <img src="../feed/post1-teaser.png" alt="Post 1">
+        <div class="cap">1080 × 1350 · feed</div>
+      </div>
+      <div class="infocol">
+        <div class="block accent">
+          <h4>Estratégia</h4>
+          <p>Post de <b>puro reconhecimento de dor</b>, sem marca em destaque nem produto. O objetivo não é explicar nada — é fazer o vendedor parar o scroll porque leu a frase que ele ouviu semana passada.</p>
+        </div>
+        <div class="block">
+          <h4>Por que funciona</h4>
+          <ul>
+            <li>A pergunta no final <b>força comentário</b>, e comentário no teaser aquece o alcance do post de lançamento</li>
+            <li>Não revelar o produto cria a <b>lacuna de curiosidade</b> que o post 2 fecha</li>
+            <li>O “não” riscado já planta o código visual da marca antes dela se apresentar</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Métrica e ação</h4>
+          <div class="kpi">
+            <div><div class="k">Foco</div><div class="v">Comentários e alcance</div></div>
+            <div><div class="k">Faça</div><div class="v">Responda todos os comentários</div></div>
+          </div>
+        </div>
+        <div class="caption">
+          <h4>Legenda</h4>
+          <div class="body">“Tá caro.”
+“Vou pensar.”
+“Preciso falar com meu sócio.”
+
+Todo vendedor conhece essas frases. E quase todo time perde venda pras mesmas três, mês após mês.
+
+Qual delas já te custou a maior venda do ano? Conta aí nos comentários 👇
+
+Quinta-feira a gente mostra o que fez a gente construir uma empresa inteira em cima disso.</div>
+          <div class="tags">#vendas #objeções #comercial #salesenablement #vendasb2b #timedevendas #prospecção</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>04</span></div>
+</section>
+
+<!-- ============ POST 2 ============ -->
+<section class="page">
+  <div class="blob o" style="width:260px;height:260px;bottom:-90px;right:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Post 02 · Lançamento · Qui 13/08</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Chegou o Contorna AI.</h2>
+    <div class="postwrap">
+      <div class="artcol">
+        <img src="../feed/post2-lancamento.png" alt="Post 2">
+        <div class="cap">1080 × 1350 · feed</div>
+      </div>
+      <div class="infocol">
+        <div class="block win">
+          <h4>Estratégia</h4>
+          <p>O post âncora da campanha. Mostra <b>logo, promessa e produto funcionando</b> numa tela só — o print do chat entrega em 3 segundos o que um texto levaria um parágrafo pra explicar.</p>
+        </div>
+        <div class="block">
+          <h4>Por que funciona</h4>
+          <ul>
+            <li>O mock de conversa é <b>prova visual</b>: mostra a IA sendo difícil e a resposta que contorna</li>
+            <li>Os três selos (grátis, sem cartão, minutos) <b>derrubam o atrito</b> antes dele virar objeção</li>
+            <li>Quem comentou no post 1 já está aquecido e recebe este com prioridade no feed</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Métrica e ação</h4>
+          <div class="kpi">
+            <div><div class="k">Foco</div><div class="v">Cliques no link da bio</div></div>
+            <div><div class="k">Faça</div><div class="v">Fixe no topo do perfil</div></div>
+          </div>
+        </div>
+        <div class="caption">
+          <h4>Legenda</h4>
+          <div class="body">Chegou o Contorna AI. 🚀
+
+Seu vendedor treina contra uma IA que dispara as objeções do SEU produto — não um roteiro genérico de call center. E é avaliado pelo que responde, não por como fala.
+
+No fim de cada sessão: nota, pontos cegos e a melhor saída pra próxima vez.
+
+✅ 3 dias grátis
+✅ Sem cartão
+✅ Pronto em minutos
+
+Link na bio 👉 contorna.ai</div>
+          <div class="tags">#contornaai #inteligenciaartificial #vendas #treinamentodevendas #objeções #salestech #startupbrasil</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>05</span></div>
+</section>
+
+<!-- ============ POST 3 ============ -->
+<section class="page">
+  <div class="blob g" style="width:250px;height:250px;top:-90px;left:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Post 03 · Educação · Dom 16/08</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Ele avalia o que você responde.</h2>
+    <div class="postwrap">
+      <div class="artcol">
+        <img src="../feed/post3-como-funciona.png" alt="Post 3">
+        <div class="cap">1080 × 1350 · feed</div>
+      </div>
+      <div class="infocol">
+        <div class="block accent">
+          <h4>Estratégia</h4>
+          <p>Diferenciação direta contra o <b>role-play com o gestor</b>, que é o concorrente real do produto. Mostra o relatório — o entregável que ninguém mais dá — com nota, critérios e ponto cego.</p>
+        </div>
+        <div class="block">
+          <h4>Por que funciona</h4>
+          <ul>
+            <li>“Avalia o que você responde, não como você fala” é a <b>frase que separa</b> o produto de treino motivacional</li>
+            <li>O ponto cego (“não pediu o orçamento real”) é <b>específico e útil</b> — gera salvamento</li>
+            <li>Gestor comercial vê aqui o que ele não consegue medir hoje</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Métrica e ação</h4>
+          <div class="kpi">
+            <div><div class="k">Foco</div><div class="v">Salvamentos e compartilhas</div></div>
+            <div><div class="k">Faça</div><div class="v">Vale virar carrossel</div></div>
+          </div>
+        </div>
+        <div class="caption">
+          <h4>Legenda</h4>
+          <div class="body">Role-play com o gestor tem um problema: ele avalia o que ouviu. E o que ele ouve é a sua simpatia.
+
+O Contorna AI avalia o que você respondeu. Cada rodada vira nota por critério:
+
+→ Reancoragem em valor
+→ Critério de decisão
+→ Se você pediu o orçamento real
+
+No exemplo: nota 8.5, mas com um ponto cego — nunca perguntou qual era o orçamento de verdade. É esse tipo de detalhe que decide um deal.
+
+Testa em contorna.ai (link na bio)</div>
+          <div class="tags">#vendas #salesenablement #gestaodevendas #performancecomercial #objeções #coachingdevendas</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>06</span></div>
+</section>
+
+<!-- ============ POST 4 ============ -->
+<section class="page">
+  <div class="blob o" style="width:250px;height:250px;top:-90px;right:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Post 04 · Objeção · Qui 20/08</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Feito pro seu mercado.</h2>
+    <div class="postwrap">
+      <div class="artcol">
+        <img src="../feed/post4-mercados.png" alt="Post 4">
+        <div class="cap">1080 × 1350 · feed</div>
+      </div>
+      <div class="infocol">
+        <div class="block accent">
+          <h4>Estratégia</h4>
+          <p>A marca <b>contornando a própria objeção</b> em público — “IA não entende meu nicho”. Coerência total com o produto: se a gente vende contorno de objeção, tem que contornar a nossa na frente de todo mundo.</p>
+        </div>
+        <div class="block">
+          <h4>Por que funciona</h4>
+          <ul>
+            <li>Nomeia a objeção antes do lead pensar nela — <b>técnica que o próprio produto ensina</b></li>
+            <li>Os 63 packs viram <b>prova de profundidade</b>, não lista de features</li>
+            <li>Pedir “comenta seu nicho” gera engajamento qualificado e mapeia demanda real</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Métrica e ação</h4>
+          <div class="kpi">
+            <div><div class="k">Foco</div><div class="v">Comentários por segmento</div></div>
+            <div><div class="k">Faça</div><div class="v">Responda cada nicho citado</div></div>
+          </div>
+        </div>
+        <div class="caption">
+          <h4>Legenda</h4>
+          <div class="body">“IA não vai entender meu nicho.”
+
+Essa é a objeção que a gente mais ouve — e é justa. A objeção de quem vende seguro de vida não tem NADA a ver com a de quem vende imóvel na planta.
+
+Por isso o Contorna AI tem 63 Vertical Packs: personas e objeções típicas do seu setor, prontas no primeiro dia. Você escolhe o pack e já treina com o cliente difícil do SEU mercado.
+
+Não achou o seu? Comenta aí que a gente monta.</div>
+          <div class="tags">#vendas #seguros #imoveis #automotivo #consultoriati #vendasb2b #contornaai #mercadoimobiliario</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>07</span></div>
+</section>
+
+<!-- ============ POST 5 ============ -->
+<section class="page">
+  <div class="blob g" style="width:270px;height:270px;bottom:-100px;left:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Post 05 · Conversão · Dom 23/08</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Seu próximo “tá caro”.</h2>
+    <div class="postwrap">
+      <div class="artcol">
+        <img src="../feed/post5-cta.png" alt="Post 5">
+        <div class="cap">1080 × 1350 · feed</div>
+      </div>
+      <div class="infocol">
+        <div class="block win">
+          <h4>Estratégia</h4>
+          <p>Fechamento da sequência com <b>o valor borrado de propósito</b>. A dor é ancorada na perda — o custo de não resolver é recorrente — mas o preço só se revela no clique. O borrão transforma a informação em pergunta.</p>
+        </div>
+        <div class="block">
+          <h4>Por que funciona</h4>
+          <ul>
+            <li>“Perde o padrão, não só a venda” transforma um custo pontual em <b>problema recorrente</b></li>
+            <li>O valor escondido cria <b>lacuna de curiosidade</b> — e o CTA “Link na Bio” dá a saída imediata pra ela</li>
+            <li>Fecha o arco: o mesmo “tá caro” do post 1 volta aqui já contornado</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Métrica e ação</h4>
+          <div class="kpi">
+            <div><div class="k">Foco</div><div class="v">Cadastros na avaliação</div></div>
+            <div><div class="k">Faça</div><div class="v">Impulsione para quem engajou</div></div>
+          </div>
+        </div>
+        <div class="caption">
+          <h4>Legenda</h4>
+          <div class="body">Toda vez que seu time ouve “tá caro” e trava, você não perde só aquela venda. Perde o padrão — porque amanhã vai acontecer de novo.
+
+25 sessões de treino por mês. 3 dias grátis, sem cartão — e o valor está no link da bio.
+
+Configure em minutos e treine o primeiro cenário hoje.
+
+👉 contorna.ai (link na bio)</div>
+          <div class="tags">#vendas #contornaai #treinamentodevendas #salestech #comercial #gestaocomercial #produtividade</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>08</span></div>
+</section>
+
+<!-- ============ STORIES ============ -->
+<section class="page">
+  <div class="blob g" style="width:290px;height:290px;top:-105px;right:-85px;"></div>
+  <div class="blob o" style="width:250px;height:250px;bottom:-90px;left:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Stories · 1080 × 1920</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">As mesmas 5 peças,<br>refeitas pro vertical.</h2>
+    <p class="lede">Não são as artes do feed esticadas: o layout foi remontado com tipografia maior e respiro na altura, porque o story é visto de relance. Publique junto do post do feed, no mesmo dia.</p>
+
+    <div class="strow">
+      <figure>
+        <img src="../stories/story1-teaser.png" alt="Story 1">
+        <figcaption>01 · TEASER<br>seg 10/08</figcaption>
+      </figure>
+      <figure>
+        <img src="../stories/story2-lancamento.png" alt="Story 2">
+        <figcaption>02 · LANÇAMENTO<br>qui 13/08</figcaption>
+      </figure>
+      <figure>
+        <img src="../stories/story3-como-funciona.png" alt="Story 3">
+        <figcaption>03 · EDUCAÇÃO<br>dom 16/08</figcaption>
+      </figure>
+      <figure>
+        <img src="../stories/story4-mercados.png" alt="Story 4">
+        <figcaption>04 · OBJEÇÃO<br>qui 20/08</figcaption>
+      </figure>
+      <figure>
+        <img src="../stories/story5-cta.png" alt="Story 5">
+        <figcaption>05 · CONVERSÃO<br>dom 23/08</figcaption>
+      </figure>
+    </div>
+
+    <div class="stgrid">
+      <div class="card">
+        <h3>Área segura</h3>
+        <div class="diagram">
+          <div class="band top">~270px<br>nome · foto · fechar</div>
+          <div class="mid">ÁREA SEGURA</div>
+          <div class="band bot">~300px<br>resposta · link</div>
+        </div>
+        <p class="diag-cap">As faixas hachuradas são cobertas pela interface do Instagram. Nenhum texto das peças entra nelas.</p>
+      </div>
+
+      <div class="card">
+        <h3>Onde colocar o sticker</h3>
+        <p style="font-size:10.5px;color:var(--dim);line-height:1.55;margin-bottom:4mm;">
+          O respiro na parte de baixo de cada tela é proposital: é onde entra o sticker nativo do Instagram — que é clicável e conta para o algoritmo. Não desenhei nenhum na arte por isso.
+        </p>
+        <div class="sticks">
+          <div class="stick-row">
+            <span class="sn">01</span><span class="st">Pergunta</span>
+            <span class="sd">“Qual ‘não’ já te custou uma venda?” — mesma mecânica do post</span>
+          </div>
+          <div class="stick-row">
+            <span class="sn">02</span><span class="st">Link</span>
+            <span class="sd">Direto para contorna.ai, logo abaixo dos selos</span>
+          </div>
+          <div class="stick-row">
+            <span class="sn">03</span><span class="st">Enquete</span>
+            <span class="sd">“Você mede isso hoje?” — sim / não faço ideia</span>
+          </div>
+          <div class="stick-row">
+            <span class="sn">04</span><span class="st">Caixa de perguntas</span>
+            <span class="sd">“Qual é o seu nicho?” — alimenta a fila de packs</span>
+          </div>
+          <div class="stick-row">
+            <span class="sn">05</span><span class="st">Link</span>
+            <span class="sd">Essencial: é o story que fecha a sequência</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>09</span></div>
+</section>
+
+<!-- ============ CHECKLIST ============ -->
+<section class="page">
+  <div class="blob g" style="width:300px;height:300px;top:-110px;right:-90px;"></div>
+  <div class="blob o" style="width:260px;height:260px;bottom:-90px;left:-80px;"></div>
+  <div class="z" style="display:flex;flex-direction:column;height:100%;">
+    <div class="head">
+      <div class="kick">Antes de publicar</div>
+      <div class="brand"><svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg> Contorna AI</div>
+    </div>
+    <h2 class="title display">Checklist e próximos passos.</h2>
+
+    <div class="two" style="margin-bottom:7mm;">
+      <div class="card">
+        <h3>Configuração do perfil</h3>
+        <ul class="chk">
+          <li><b>Foto de perfil</b> atualizada com o arquivo 1080×1080</li>
+          <li><b>Nome:</b> Contorna AI</li>
+          <li><b>Bio:</b> inteligência de objeções em vendas · treino contra IA com as objeções do seu produto</li>
+          <li><b>Link:</b> contorna.ai</li>
+          <li><b>Categoria:</b> software / tecnologia</li>
+          <li><b>Contato via WhatsApp</b> habilitado para o plano Time</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>A cada publicação</h3>
+        <ul class="chk">
+          <li>Publicar no <b>horário sugerido</b> do cronograma</li>
+          <li>Responder comentários na <b>primeira hora</b> (empurra o alcance)</li>
+          <li>Repostar no <b>stories</b> no mesmo dia</li>
+          <li>Conferir se o <b>link da bio</b> está funcionando</li>
+          <li>Anotar salvamentos e alcance para comparar as peças</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="why" style="margin-top:0;">
+      <h3>Reaproveitamento</h3>
+      <p><b>Stories:</b> cada arte funciona em 1080×1920 com margem extra em cima e embaixo — dá para criar os 5 em poucos minutos a partir dos mesmos elementos.</p>
+      <p><b>Carrossel:</b> os posts 3 e 4 rendem carrossel de 3 a 5 telas. No post 4, cada grupo de nichos vira uma tela; no post 3, cada critério de avaliação.</p>
+      <p><b>Depois da sequência:</b> a mecânica “objeção → resposta que contorna” é conteúdo infinito. Um post por semana, sempre com uma objeção real do seu mercado, mantém o feed vivo sem reinventar formato.</p>
+    </div>
+
+    <div class="nextbox">
+      <h3 class="display">Antes do post 02 ir ao ar</h3>
+      <p>O post de lançamento manda tráfego direto para contorna.ai. Garanta que a <b>chave da API esteja configurada</b> e que o fluxo de avaliação esteja funcionando de ponta a ponta — um visitante que clica no dia do anúncio e encontra erro dificilmente volta.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Contorna AI · Plano de conteúdo</span><span>10</span></div>
+</section>
+
+</body>
+</html>
