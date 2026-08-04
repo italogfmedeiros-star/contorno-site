@@ -144,6 +144,12 @@ As três famílias são licenciadas sob a
   pessoa e não traz nome nem domínio — só o símbolo, sem palavra. Quem viu o
   story reconhece o desenho depois do lançamento. Se o post do produto sair em
   outro perfil, acrescente um sticker de menção apontando pra lá.
+- **Story cômico (avulso):** vai **depois** do post do produto, e por isso já
+  traz a marca com nome — o suspense do outro avulso já foi entregue. A piada é
+  aplicar a mecânica do produto em quem está vendo: a objeção contornada é
+  "depois eu sigo". A seta aponta pra faixa de baixo, então o **sticker de
+  menção da página tem que ir ali** — sem ele a peça promete um @ que não
+  existe.
 - **Post 5:** o valor da assinatura aparece borrado de propósito, para gerar
   curiosidade e levar ao clique. A legenda acompanha essa escolha e não revela o
   preço.

@@ -48,6 +48,7 @@ const REELS = {
 
 const AVULSOS = {
   a1: "avulsos/story-bastidor-pessoal.png",
+  a2: "avulsos/story-cta-comico.png",
 };
 
 const STORIES = {
