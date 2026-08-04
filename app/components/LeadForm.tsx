@@ -50,10 +50,10 @@ export default function LeadForm() {
     return (
       <div className="lead-success">
         <div className="ok-dot">✓</div>
-        <h3>Recebido. Você está na fila.</h3>
+        <h3>Recebido. Já dá pra treinar.</h3>
         <p>
-          Vamos te chamar no e-mail (ou WhatsApp, se você deixou) pra liberar o acesso do seu time à
-          primeira turma.
+          A simulação aqui do lado é aberta — comece por ela agora. A gente te chama no e-mail (ou
+          WhatsApp, se você deixou) pra montar o ambiente do seu time, com os cenários do seu produto.
         </p>
       </div>
     );
@@ -93,10 +93,10 @@ export default function LeadForm() {
       {status === "error" && errorMsg && <div className="lead-error full">{errorMsg}</div>}
 
       <button className="btn-signal lead-submit full" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Enviando…" : "Quero acesso antecipado →"}
+        {status === "sending" ? "Enviando…" : "Quero pro meu time →"}
       </button>
       <div className="lead-fine full">
-        Sem spam. Usamos seus dados só pra falar sobre o Contorno — e você pode pedir remoção quando quiser.
+        Sem spam. Usamos seus dados só pra falar sobre o Contorna AI — e você pode pedir remoção quando quiser.
       </div>
     </form>
   );

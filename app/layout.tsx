@@ -21,9 +21,9 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Contorno — o cliente mais difícil do seu mercado, todo dia, antes das 9h",
+  title: "Contorna AI — o cliente mais difícil do seu mercado, todo dia, antes das 9h",
   description:
-    "A IA finge ser o cliente mais difícil do seu mercado — e um segundo agente te sussurra o que dizer, em tempo real, antes do 'vou pensar' virar desculpa de novo.",
+    "Seu time treina contra uma IA que dispara as objeções do seu produto — e é avaliado pelo que responde. Teste agora, sem cadastro.",
 };
 
 export default function RootLayout({
