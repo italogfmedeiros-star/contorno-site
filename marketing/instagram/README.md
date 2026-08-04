@@ -6,15 +6,20 @@ identidade visual do site publicado em [contorna.ai](https://contorna.ai).
 ## O que tem aqui
 
 ```
-Contorna-AI-Plano-de-Conteudo-Instagram.pdf   plano completo (10 páginas, A4)
+PLANO.md                                      o plano em markdown (legendas copiáveis)
+Contorna-AI-Plano-de-Conteudo-Instagram.pdf   o mesmo plano, apresentável (10 páginas, A4)
 brand/contorna-mark.svg                       a marca
 feed/                                         perfil (1080×1080) + 5 posts (1080×1350)
 stories/                                      5 stories (1080×1920)
 src/                                          fontes das peças + script de renderização
 ```
 
-O PDF é o documento principal: traz a identidade visual, o cronograma, a
-estratégia de cada post, as legendas prontas para copiar e o guia de stories.
+O conteúdo é o mesmo nos dois formatos — use o que servir melhor:
+
+- **[`PLANO.md`](./PLANO.md)** para o dia a dia: as legendas estão em blocos de
+  código, prontas para copiar, e o checklist tem caixas marcáveis.
+- **[PDF](./Contorna-AI-Plano-de-Conteudo-Instagram.pdf)** para apresentar ou
+  imprimir: traz as artes em miniatura junto de cada estratégia.
 
 ## A sequência
 
