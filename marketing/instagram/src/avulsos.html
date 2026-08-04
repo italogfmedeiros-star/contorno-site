@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="./fonts-screen/fonts.css" rel="stylesheet">
+<link href="./base.css" rel="stylesheet">
+<style>
+  /* ===== PEÇAS AVULSAS =====
+     O que não pertence à sequência de lançamento: anúncios de perfil pessoal,
+     recados pontuais. Mesma identidade, mas sem o lockup completo da marca —
+     ver a nota sobre assinatura no story de bastidor abaixo. */
+  .story{ width:1080px; height:1920px; }
+  .story > .z{ padding:270px 80px 300px; }
+  .story .eyebrow{ font-size:24px; gap:16px; }
+  .story .eyebrow:before{ width:38px; }
+
+  /* ---- BASTIDOR PESSOAL ----
+     Vai no perfil do fundador, não no da marca, e antecede o primeiro post do
+     produto. Por isso é escrito em primeira pessoa e não traz nome nem
+     domínio: quem vê ainda não deve saber do que se trata. A marca aparece só
+     como símbolo, sem palavra — depois do lançamento, quem viu este story
+     reconhece o desenho. */
+  #a1 h1{ font-size:82px; font-weight:800; letter-spacing:-.04em; line-height:1.06; margin-top:46px; }
+
+  /* A palavra é o assunto da peça, então ela é o maior elemento da tela. */
+  #a1 .word{
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:800;
+    font-size:230px; letter-spacing:-.05em; line-height:1;
+    margin:64px 0 0; align-self:flex-start;
+  }
+  #a1 .word .strike:after{ height:16px; top:54%; border-radius:8px; }
+
+  #a1 .body{ color:var(--dim); font-size:36px; line-height:1.45; margin-top:70px; }
+  #a1 .body b{ color:var(--text); }
+
+  #a1 .next{
+    margin-top:88px; display:inline-flex; align-items:center; gap:14px; align-self:flex-start;
+    font-family:'IBM Plex Mono',monospace; font-size:26px; color:var(--accent);
+    padding:20px 32px; border-radius:100px; border:2px solid rgba(239,78,23,.35);
+  }
+  /* Só o símbolo, sem palavra — a assinatura que ainda não se entrega.
+     Desce até o fim da área segura, onde assinatura costuma ficar. */
+  #a1 .sign{ margin-top:auto; opacity:.55; }
+  #a1 .sign svg{ width:56px; height:56px; display:block; }
+</style>
+</head>
+<body>
+
+<!-- ===== A1 — BASTIDOR PESSOAL (1080x1920) ===== -->
+<div class="board story" id="a1">
+  <div class="blob g" style="width:800px;height:800px;top:-200px;right:-240px;"></div>
+  <div class="blob o" style="width:660px;height:660px;bottom:-160px;left:-210px;"></div>
+  <div class="z">
+    <span class="eyebrow">Bastidor</span>
+    <h1 class="display">Sumi um tempo aqui.<br>Foi por causa<br>de uma palavra.</h1>
+    <p class="word display"><span class="strike">“não”</span></p>
+    <p class="body">Ela derruba mais venda que preço, concorrente e prazo somados. E quase ninguém treina pra ela.<br><br><b>Passei os últimos meses construindo uma resposta.</b></p>
+    <span class="next">o próximo post conta o que é →</span>
+    <span class="sign">
+      <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/>
+        <circle cx="67" cy="48" r="10.5" fill="#E6482F"/>
+      </svg>
+    </span>
+  </div>
+</div>
+
+</body>
+</html>

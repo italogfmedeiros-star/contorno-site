@@ -46,6 +46,10 @@ const REELS = {
   h5: "reels/destaque5-bastidor.png",
 };
 
+const AVULSOS = {
+  a1: "avulsos/story-bastidor-pessoal.png",
+};
+
 const STORIES = {
   s1: "stories/story1-teaser.png",
   s2: "stories/story2-lancamento.png",
@@ -130,6 +134,10 @@ async function buildPdf(browser) {
     if (alvo === "all" || alvo === "stories") {
       console.log("stories:");
       await shootBoards(browser, "stories.html", STORIES, { width: 1200, height: 2000 });
+    }
+    if (alvo === "all" || alvo === "avulsos") {
+      console.log("avulsos:");
+      await shootBoards(browser, "avulsos.html", AVULSOS, { width: 1200, height: 2000 });
     }
     if (alvo === "all" || alvo === "reels") {
       console.log("reels:");

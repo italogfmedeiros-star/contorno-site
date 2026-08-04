@@ -12,6 +12,7 @@ feed/                                         perfil (1080×1080) + 6 posts (108
 carrossel/                                    6 slides do carrossel de objeções (1080×1350)
 stories/                                      5 stories (1080×1920)
 reels/                                        3 capas de Reels (1080×1920) + 5 destaques (1080×1080)
+avulsos/                                      peças fora da sequência (1080×1920)
 src/                                          fontes das peças + script de renderização
 ```
 
@@ -80,6 +81,7 @@ node render.js feed       # só as artes de feed
 node render.js carrossel  # só o carrossel
 node render.js stories    # só os stories
 node render.js reels      # só as capas de Reels e os destaques
+node render.js avulsos    # só as peças avulsas
 node render.js pdf        # só o PDF
 ```
 
@@ -97,6 +99,7 @@ CHROMIUM_PATH=/caminho/para/chrome node render.js
 | `src/carrossel.html` | 6 slides do carrossel |
 | `src/stories.html` | 5 stories |
 | `src/reels.html` | 3 capas de Reels + 5 ícones de destaque |
+| `src/avulsos.html` | peças fora da sequência de lançamento |
 | `src/plano.html` | o PDF (embute as imagens das outras pastas) |
 
 O PDF é montado a partir das imagens já geradas, então rode as peças antes
@@ -136,6 +139,11 @@ As três famílias são licenciadas sob a
   grade perde a unidade.
 - **Destaques:** são recortados em círculo, por isso os ícones ficam centrados e
   sem texto. Nomeie cada destaque com uma palavra só, para não truncar.
+- **Story de bastidor (avulso):** é para o perfil pessoal do fundador, não o da
+  marca, e vai **antes** do primeiro post do produto. Por isso é em primeira
+  pessoa e não traz nome nem domínio — só o símbolo, sem palavra. Quem viu o
+  story reconhece o desenho depois do lançamento. Se o post do produto sair em
+  outro perfil, acrescente um sticker de menção apontando pra lá.
 - **Post 5:** o valor da assinatura aparece borrado de propósito, para gerar
   curiosidade e levar ao clique. A legenda acompanha essa escolha e não revela o
   preço.
