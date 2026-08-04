@@ -1,7 +1,12 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
 import { getScenarioById, type Scenario } from "./scenarios";
 import type { ChatMessage } from "./types";
 
+/**
+ * Erro cuja mensagem foi escrita para ser lida por quem está usando o produto.
+ * Só o que é lançado como ApiError chega à tela — ver handleApiError.
+ */
 export class ApiError extends Error {
   status: number;
   constructor(status: number, message: string) {
@@ -54,11 +59,38 @@ export function parseChatRequest(body: unknown): ParsedChatRequest {
   return { scenario, sessionId, history: parsedHistory };
 }
 
+/**
+ * Converte uma exceção em resposta HTTP.
+ *
+ * A mensagem de um erro qualquer é escrita para quem mantém o sistema, não
+ * para quem está tentando vender: "ANTHROPIC_API_KEY não configurada" já
+ * apareceu num balão vermelho no meio da simulação. Só ApiError — cuja
+ * mensagem foi redigida para o visitante — chega à tela. O resto vira texto
+ * genérico, e o detalhe fica no log do servidor.
+ */
 export function handleApiError(error: unknown): NextResponse {
   if (error instanceof ApiError) {
     return NextResponse.json({ error: error.message }, { status: error.status });
   }
-  const message = error instanceof Error ? error.message : "Erro inesperado.";
-  console.error("[api]", message);
-  return NextResponse.json({ error: message }, { status: 500 });
+
+  // Falha da API da Anthropic: o texto original é interno, mas o status diz o
+  // que interessa ao visitante — se vale a pena tentar de novo agora.
+  if (error instanceof Anthropic.APIError) {
+    console.error("[api] anthropic", error.status, error.message);
+    const emFila = error.status === 429 || (error.status ?? 500) >= 500;
+    return NextResponse.json(
+      {
+        error: emFila
+          ? "A simulação está com fila agora. Tente de novo em alguns segundos."
+          : "Não foi possível falar com a IA agora. Tente de novo em instantes.",
+      },
+      { status: 503 }
+    );
+  }
+
+  console.error("[api]", error instanceof Error ? (error.stack ?? error.message) : error);
+  return NextResponse.json(
+    { error: "Algo deu errado do nosso lado. Tente de novo em instantes." },
+    { status: 500 }
+  );
 }

@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import { ApiError } from "./api-helpers";
 import { buildClienteSystemPrompt, buildCoachSystemPrompt, buildReportSystemPrompt, formatTranscript } from "./prompts";
 import type { Scenario } from "./scenarios";
 import type { ChatMessage, ReportPayload } from "./types";
@@ -11,8 +12,14 @@ function getClient(): Anthropic {
   if (!cachedClient) {
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
-      throw new Error(
-        "ANTHROPIC_API_KEY não configurada. Defina a variável de ambiente para habilitar a simulação."
+      // O visitante não tem o que fazer com o nome da variável — quem precisa
+      // dele é quem opera o ambiente, e para esse o log serve.
+      console.error(
+        "[anthropic] ANTHROPIC_API_KEY não configurada; a simulação não vai responder."
+      );
+      throw new ApiError(
+        503,
+        "A simulação está temporariamente indisponível. Tente de novo em instantes."
       );
     }
     cachedClient = new Anthropic({ apiKey });
@@ -119,7 +126,11 @@ export async function generateReport(scenario: Scenario, history: ChatMessage[])
   );
 
   if (!toolUse) {
-    throw new Error("O Agente de Relatório não retornou uma avaliação estruturada.");
+    console.error("[anthropic] relatório sem tool_use; stop_reason:", response.stop_reason);
+    throw new ApiError(
+      502,
+      "Não consegui fechar o relatório dessa rodada. Encerre de novo em instantes."
+    );
   }
 
   return toolUse.input as ReportPayload;
