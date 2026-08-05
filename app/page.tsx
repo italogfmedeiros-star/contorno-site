@@ -1,5 +1,4 @@
-import LeadForm from "./components/LeadForm";
-import Simulator from "./components/Simulator";
+import Mark from "./components/Mark";
 
 const objections: [string, string][] = [
   ["tá caro", "e comparado a não resolver isso, quanto custa continuar do jeito que tá?"],
@@ -37,25 +36,24 @@ export default function Home() {
       <nav>
         <div className="nav-inner">
           <div className="logo">
-            <span className="dot" />
-            contorno
+            <Mark size={22} />
+            Contorna AI
           </div>
           <div className="nav-links">
             <a href="#problema">O problema</a>
             <a href="#produto">O produto</a>
             <a href="#inteligencia">Inteligência</a>
             <a href="#desempenho">Desempenho</a>
-            <a href="#simulacao">Simulação</a>
           </div>
-          <a className="nav-cta" href="#captura">
-            Acesso antecipado
+          <a className="nav-cta" href="#produto">
+            Como funciona
           </a>
         </div>
       </nav>
 
       {/* HERO */}
       <section className="hero wrap">
-        <div className="eyebrow">DEVOPSIA · PLATAFORMA DE CONTORNO DE OBJEÇÕES</div>
+        <div className="eyebrow">DEVOPSIA · INTELIGÊNCIA DE OBJEÇÕES EM VENDAS</div>
         <h1>
           O CLIENTE <span className="strike">NÃO</span>
           <br />
@@ -63,16 +61,16 @@ export default function Home() {
           <br />A GENTE MUDA ISSO.
         </h1>
         <p className="hero-sub">
-          O Contorno trata a objeção como o ativo central da venda: treina seu time contra o cliente mais
+          O Contorna AI trata a objeção como o ativo central da venda: treina seu time contra o cliente mais
           difícil do seu mercado, sopra a resposta certa na hora H e transforma cada &quot;não&quot; em dado
           que aumenta a taxa de fechamento do próximo negócio.
         </p>
         <div className="hero-cta">
-          <a className="btn-signal" href="#captura">
-            Quero acesso antecipado →
+          <a className="btn-signal" href="#produto">
+            Como funciona →
           </a>
-          <a className="btn-outline" href="#simulacao">
-            Testar a simulação
+          <a className="btn-outline" href="#problema">
+            O problema que resolve
           </a>
         </div>
       </section>
@@ -180,7 +178,7 @@ export default function Home() {
             <div className="step-body">
               <h3>O Copiloto ao vivo</h3>
               <p>
-                Na conversa real com o cliente, o Contorno detecta a objeção na hora e sussurra a saída na
+                Na conversa real com o cliente, o Contorna AI detecta a objeção na hora e sussurra a saída na
                 tela do vendedor. A resposta do melhor closer do time, disponível pra todo mundo, em tempo
                 real.
               </p>
@@ -234,15 +232,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* SIMULAÇÃO */}
-      <section className="how wrap" id="simulacao" style={{ paddingTop: 20 }}>
-        <div className="section-head">
-          <div className="section-kicker">SIMULAÇÃO · TESTE AGORA</div>
-          <h2>Apanhe da IA aqui, antes do cliente de verdade.</h2>
-        </div>
-        <Simulator />
       </section>
 
       {/* INTELIGÊNCIA */}
@@ -325,28 +314,30 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CAPTURA */}
-      <section className="final wrap" id="captura">
+      {/* FECHAMENTO
+          Institucional por ora: sem formulário nem link externo, porque
+          ainda não há canal de contato definido. Trocar o <p> abaixo por um
+          CTA (WhatsApp, e-mail ou Instagram) assim que o canal existir. */}
+      <section className="final wrap" id="contato">
         <div className="lead-card glass glass-strong">
-          <div className="section-kicker">ACESSO ANTECIPADO</div>
+          <div className="section-kicker">CONTORNA AI</div>
           <h2>
-            Pare de perder venda pro mesmo <span style={{ color: "var(--win)" }}>&quot;não&quot;</span> de
-            sempre.
+            Pare de perder venda pro mesmo{" "}
+            <span className="strike">&quot;não&quot;</span> de sempre.
           </h2>
           <p className="lead-sub">
-            Estamos liberando o Contorno por turmas. Deixe seus dados e entre na fila do seu setor — sem
-            cartão, sem compromisso.
+            Treinador, copiloto ao vivo e closer autônomo — três frentes que tratam a objeção como o ativo
+            central da venda, não como um obstáculo.
           </p>
-          <LeadForm />
         </div>
       </section>
 
       <footer className="glass">
         <div className="logo">
-          <span className="dot" />
-          contorno
+          <Mark size={18} />
+          Contorna AI
         </div>
-        <div className="fine">DEVOPSIA © 2026 — PLATAFORMA DE CONTORNO DE OBJEÇÕES</div>
+        <div className="fine">DEVOPSIA © 2026 — INTELIGÊNCIA DE OBJEÇÕES EM VENDAS</div>
       </footer>
     </>
   );

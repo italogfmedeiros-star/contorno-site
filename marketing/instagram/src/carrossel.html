@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="./fonts-screen/fonts.css" rel="stylesheet">
+<link href="./base.css" rel="stylesheet">
+<style>
+  .pt{ width:1080px; height:1350px; }
+  .pt > .z{ padding:88px 70px 56px; }
+
+  /* Contador do carrossel — ajuda quem está passando a saber onde está. */
+  .top{ display:flex; align-items:center; justify-content:space-between; }
+  .count{ font-family:'IBM Plex Mono',monospace; font-size:22px; letter-spacing:.12em; color:var(--dim); }
+  .count b{ color:var(--text); font-weight:600; }
+
+  /* ---- SLIDES DE OBJEÇÃO ---- */
+  .obj .quote{
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:800;
+    font-size:104px; letter-spacing:-.045em; line-height:1.0; margin:56px 0 0;
+  }
+  .obj .behind{ margin-top:60px; }
+  .obj .lbl{
+    font-family:'IBM Plex Mono',monospace; font-size:20px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--dim); margin-bottom:18px;
+  }
+  .obj .behind p{ font-size:36px; line-height:1.4; color:var(--dim); }
+  .obj .behind p b{ color:var(--text); }
+  /* O erro comum vem antes da virada: a pessoa se reconhece na resposta
+     errada e só então lê a certa. */
+  .obj .miss{
+    margin-top:44px; padding:28px 32px; border-radius:18px;
+    background:rgba(230,72,47,.06); border-left:5px solid rgba(230,72,47,.55);
+  }
+  .obj .miss .lbl{ color:var(--dot); margin-bottom:14px; }
+  .obj .miss p{ font-size:32px; line-height:1.35; color:var(--dim); }
+  /* A frase pronta é o que a pessoa salva o post pra reler — por isso ganha
+     um cartão próprio, com a borda na cor de ação. */
+  .obj .turn{
+    margin-top:26px; padding:44px;
+    background:rgba(255,255,255,.72); border:2px solid rgba(239,78,23,.32);
+    border-radius:28px; box-shadow:0 30px 80px rgba(27,25,20,.10);
+  }
+  .obj .turn .lbl{ color:var(--accent); margin-bottom:22px; }
+  .obj .turn p{ font-size:40px; line-height:1.35; font-weight:600; }
+
+  /* ---- C1 CAPA ---- */
+  #c1 h1{ font-size:112px; font-weight:800; letter-spacing:-.045em; line-height:1.0; margin-top:54px; }
+  #c1 .sub{ color:var(--dim); font-size:36px; line-height:1.45; margin-top:48px; max-width:860px; }
+  #c1 .sub b{ color:var(--text); }
+  #c1 .list{ margin-top:52px; display:flex; flex-direction:column; gap:16px; }
+  #c1 .list .it{
+    display:flex; align-items:center; gap:18px; font-size:32px; color:var(--dim);
+    padding:20px 28px; border-radius:100px;
+    background:rgba(255,255,255,.55); border:1.5px solid var(--line);
+  }
+  #c1 .list .it i{
+    font-family:'IBM Plex Mono',monospace; font-style:normal; font-size:22px;
+    color:var(--accent); flex:none;
+  }
+  #c1 .swipe{
+    margin-top:52px; display:inline-flex; align-items:center; gap:14px; align-self:flex-start;
+    font-family:'IBM Plex Mono',monospace; font-size:24px; color:var(--accent);
+  }
+
+  /* ---- C6 CTA ---- */
+  #c6 > .z{ align-items:center; text-align:center; }
+  #c6 .mark{ width:150px; height:150px; margin:48px 0 46px; }
+  #c6 h1{ font-size:84px; font-weight:800; letter-spacing:-.04em; line-height:1.04; max-width:940px; }
+  #c6 .sub{ color:var(--dim); font-size:36px; line-height:1.5; margin-top:42px; max-width:780px; }
+  #c6 .btn{
+    margin-top:52px; display:inline-flex; align-items:center; gap:16px;
+    background:var(--accent); color:#fff; font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+    font-size:40px; padding:32px 64px; border-radius:100px;
+    box-shadow:0 24px 60px rgba(239,78,23,.35);
+  }
+  #c6 .fine{ margin-top:28px; font-family:'IBM Plex Mono',monospace; font-size:24px; color:var(--dim); }
+  #c6 .foot{ width:100%; }
+</style>
+</head>
+<body>
+
+<!-- ===== C1 CAPA ===== -->
+<div class="board pt" id="c1">
+  <div class="blob g" style="width:700px;height:700px;top:-220px;right:-200px;"></div>
+  <div class="blob o" style="width:540px;height:540px;bottom:-150px;left:-170px;"></div>
+  <div class="z">
+    <span class="eyebrow">Carrossel · salva pra reler depois</span>
+    <h1 class="display">4 objeções<br>que travam<br>a sua venda.</h1>
+    <p class="sub">E a <b>frase exata</b> pra virar cada uma — sem baixar o preço.</p>
+    <div class="list">
+      <div class="it"><i>01</i><span>“Tá caro.”</span></div>
+      <div class="it"><i>02</i><span>“Vou pensar.”</span></div>
+      <div class="it"><i>03</i><span>“Preciso falar com meu sócio.”</span></div>
+      <div class="it"><i>04</i><span>“Me manda por e-mail.”</span></div>
+    </div>
+    <span class="swipe">arrasta pro lado →</span>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C2 TÁ CARO ===== -->
+<div class="board pt obj" id="c2">
+  <div class="blob o" style="width:620px;height:620px;top:-200px;left:-180px;"></div>
+  <div class="blob g" style="width:540px;height:540px;bottom:-160px;right:-160px;"></div>
+  <div class="z">
+    <div class="top">
+      <span class="eyebrow">Objeção de preço</span>
+      <span class="count"><b>01</b> / 04</span>
+    </div>
+    <p class="quote display"><span class="strike">“Tá caro.”</span></p>
+    <div class="behind">
+      <div class="lbl">O que está por trás</div>
+      <p>Quase nunca é sobre o preço. É sobre <b>não enxergar o retorno</b> — e o desconto não resolve isso.</p>
+    </div>
+    <div class="miss">
+      <div class="lbl">O erro comum</div>
+      <p>“Consigo fazer 10% pra você.”</p>
+    </div>
+    <div class="turn">
+      <div class="lbl">A virada</div>
+      <p>“Caro comparado a quê? Ao custo de continuar perdendo esses deals?”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C3 VOU PENSAR ===== -->
+<div class="board pt obj" id="c3">
+  <div class="blob g" style="width:620px;height:620px;top:-200px;right:-180px;"></div>
+  <div class="blob o" style="width:540px;height:540px;bottom:-160px;left:-160px;"></div>
+  <div class="z">
+    <div class="top">
+      <span class="eyebrow">Objeção de tempo</span>
+      <span class="count"><b>02</b> / 04</span>
+    </div>
+    <p class="quote display"><span class="strike">“Vou pensar.”</span></p>
+    <div class="behind">
+      <div class="lbl">O que está por trás</div>
+      <p>Falta uma informação pra decidir — e <b>você ainda não sabe qual é</b>. Se deixar ir, ela nunca aparece.</p>
+    </div>
+    <div class="miss">
+      <div class="lbl">O erro comum</div>
+      <p>“Sem problema, te ligo semana que vem.”</p>
+    </div>
+    <div class="turn">
+      <div class="lbl">A virada</div>
+      <p>“Claro. Só pra eu te ajudar melhor: o que ainda precisa ficar claro pra virar um sim?”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C4 SÓCIO ===== -->
+<div class="board pt obj" id="c4">
+  <div class="blob o" style="width:620px;height:620px;top:-190px;left:-170px;"></div>
+  <div class="blob g" style="width:560px;height:560px;bottom:-160px;right:-170px;"></div>
+  <div class="z">
+    <div class="top">
+      <span class="eyebrow">Objeção de decisão</span>
+      <span class="count"><b>03</b> / 04</span>
+    </div>
+    <p class="quote display"><span class="strike">“Falo com</span><br><span class="strike">meu sócio.”</span></p>
+    <div class="behind">
+      <div class="lbl">O que está por trás</div>
+      <p>Você apresentou pra <b>quem não decide sozinho</b>. O erro aconteceu antes da proposta.</p>
+    </div>
+    <div class="miss">
+      <div class="lbl">O erro comum</div>
+      <p>“Beleza, me avisa quando falar com ele.”</p>
+    </div>
+    <div class="turn">
+      <div class="lbl">A virada</div>
+      <p>“Faz sentido. O que ele precisa ver pra topar? Preparo isso pra você levar.”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C5 E-MAIL ===== -->
+<div class="board pt obj" id="c5">
+  <div class="blob g" style="width:600px;height:600px;top:-190px;left:-170px;"></div>
+  <div class="blob o" style="width:580px;height:580px;bottom:-170px;right:-170px;"></div>
+  <div class="z">
+    <div class="top">
+      <span class="eyebrow">Objeção de saída</span>
+      <span class="count"><b>04</b> / 04</span>
+    </div>
+    <p class="quote display"><span class="strike">“Manda por</span><br><span class="strike">e-mail.”</span></p>
+    <div class="behind">
+      <div class="lbl">O que está por trás</div>
+      <p>É o “não” educado. <b>Sem próximo passo com data</b>, morre na caixa de entrada.</p>
+    </div>
+    <div class="miss">
+      <div class="lbl">O erro comum</div>
+      <p>“Claro, já te mando tudo por e-mail!”</p>
+    </div>
+    <div class="turn">
+      <div class="lbl">A virada</div>
+      <p>“Mando agora. Reservo quinta 10h pra gente ver juntos — se não fizer sentido, você me diz.”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== C6 CTA ===== -->
+<div class="board pt" id="c6">
+  <div class="blob g" style="width:700px;height:700px;top:-220px;left:50%;transform:translateX(-50%);"></div>
+  <div class="blob o" style="width:560px;height:560px;bottom:-180px;left:50%;transform:translateX(-50%);"></div>
+  <div class="z">
+    <span class="eyebrow mid">Onde treinar isso</span>
+    <svg class="mark" viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+    <h1 class="display">Ler é fácil.<br>Responder na hora<br>é que trava.</h1>
+    <p class="sub">No Contorna AI seu time treina essas quatro contra uma IA que insiste — e recebe a nota do que respondeu.</p>
+    <div class="btn">Link na Bio →</div>
+    <div class="fine">3 dias grátis · sem cartão</div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
