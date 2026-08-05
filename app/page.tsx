@@ -1,6 +1,4 @@
-import LeadForm from "./components/LeadForm";
 import Mark from "./components/Mark";
-import Simulator from "./components/Simulator";
 
 const objections: [string, string][] = [
   ["tá caro", "e comparado a não resolver isso, quanto custa continuar do jeito que tá?"],
@@ -46,10 +44,9 @@ export default function Home() {
             <a href="#produto">O produto</a>
             <a href="#inteligencia">Inteligência</a>
             <a href="#desempenho">Desempenho</a>
-            <a href="#simulacao">Simulação</a>
           </div>
-          <a className="nav-cta" href="#simulacao">
-            Testar agora
+          <a className="nav-cta" href="#produto">
+            Como funciona
           </a>
         </div>
       </nav>
@@ -69,11 +66,11 @@ export default function Home() {
           que aumenta a taxa de fechamento do próximo negócio.
         </p>
         <div className="hero-cta">
-          <a className="btn-signal" href="#simulacao">
-            Treinar agora, de graça →
+          <a className="btn-signal" href="#produto">
+            Como funciona →
           </a>
-          <a className="btn-outline" href="#produto">
-            Ver como funciona
+          <a className="btn-outline" href="#problema">
+            O problema que resolve
           </a>
         </div>
       </section>
@@ -237,15 +234,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SIMULAÇÃO */}
-      <section className="how wrap" id="simulacao" style={{ paddingTop: 20 }}>
-        <div className="section-head">
-          <div className="section-kicker">SIMULAÇÃO · TESTE AGORA</div>
-          <h2>Apanhe da IA aqui, antes do cliente de verdade.</h2>
-        </div>
-        <Simulator />
-      </section>
-
       {/* INTELIGÊNCIA */}
       <section className="how wrap" id="inteligencia" style={{ paddingTop: 20 }}>
         <div className="section-head">
@@ -326,20 +314,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CAPTURA */}
-      <section className="final wrap" id="captura">
+      {/* FECHAMENTO
+          Institucional por ora: sem formulário nem link externo, porque
+          ainda não há canal de contato definido. Trocar o <p> abaixo por um
+          CTA (WhatsApp, e-mail ou Instagram) assim que o canal existir. */}
+      <section className="final wrap" id="contato">
         <div className="lead-card glass glass-strong">
-          <div className="section-kicker">LEVE PRO SEU TIME</div>
+          <div className="section-kicker">CONTORNA AI</div>
           <h2>
             Pare de perder venda pro mesmo{" "}
             <span className="strike">&quot;não&quot;</span> de sempre.
           </h2>
           <p className="lead-sub">
-            A simulação acima é aberta e não pede cadastro. Se quiser levar pro time inteiro — com os
-            cenários do seu produto e o painel do gestor — deixe seus dados que a gente monta seu ambiente.
-            Sem cartão.
+            Treinador, copiloto ao vivo e closer autônomo — três frentes que tratam a objeção como o ativo
+            central da venda, não como um obstáculo.
           </p>
-          <LeadForm />
         </div>
       </section>
 
