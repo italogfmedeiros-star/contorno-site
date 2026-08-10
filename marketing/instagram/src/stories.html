@@ -157,6 +157,51 @@
   }
   #s5 .fine{ margin-top:34px; font-family:'IBM Plex Mono',monospace; font-size:26px; color:var(--dim); }
   #s5 .foot{ width:100%; }
+
+  /* ---- SC · CARROSSEL EM STORY (6 telas) ---- */
+  .sc-top{ display:flex; align-items:center; justify-content:space-between; }
+  .sc-idx{ font-family:'IBM Plex Mono',monospace; font-size:24px; color:var(--dim); }
+  .sc-h1{
+    font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:88px;
+    line-height:1.1; letter-spacing:-.035em; color:var(--dim); margin-top:48px;
+    text-decoration-line:line-through; text-decoration-color:var(--dot);
+    text-decoration-thickness:8px; text-decoration-skip-ink:none;
+  }
+  .sc-label{
+    font-family:'IBM Plex Mono',monospace; font-size:21px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--dim); margin-bottom:12px;
+  }
+  .sc-label.warn{ color:#C2483A; }
+  .sc-back{ color:var(--dim); font-size:35px; line-height:1.5; margin-top:48px; }
+  .sc-back b{ color:var(--text); }
+  .sc-card{ border-radius:24px; padding:36px 38px; margin-top:32px; }
+  .sc-card.erro{ background:var(--accent-soft); }
+  .sc-card.virada{ background:#fff; border:1.5px solid var(--line); box-shadow:0 20px 50px rgba(27,25,20,.06); }
+  .sc-card p{ font-size:33px; color:var(--text); margin-top:6px; }
+  .sc-card.virada p{ font-weight:700; font-size:37px; line-height:1.38; margin-top:10px; }
+
+  /* capa */
+  .sc-cap-list{ margin-top:44px; display:flex; flex-direction:column; gap:18px; }
+  .sc-cap-row{
+    display:flex; align-items:center; gap:22px; background:#fff; border:1.5px solid var(--line);
+    border-radius:100px; padding:26px 34px; font-size:33px; color:var(--text);
+  }
+  .sc-cap-row .no{ font-family:'IBM Plex Mono',monospace; color:var(--accent); font-weight:700; font-size:22px; }
+  .sc-swipe{ margin-top:44px; color:var(--accent); font-family:'IBM Plex Mono',monospace; font-size:24px; }
+
+  /* tela final (CTA) */
+  #sc6 .z{ align-items:center; text-align:center; }
+  #sc6 .mark{ width:150px; height:150px; margin:60px 0 56px; }
+  #sc6 h1{ font-size:76px; font-weight:800; letter-spacing:-.035em; line-height:1.12; }
+  #sc6 .sub{ color:var(--dim); font-size:34px; line-height:1.5; margin-top:48px; max-width:820px; }
+  #sc6 .btn{
+    margin-top:56px; display:inline-flex; align-items:center; gap:18px;
+    background:var(--accent); color:#fff; font-family:'Bricolage Grotesque',sans-serif; font-weight:700;
+    font-size:42px; padding:34px 68px; border-radius:100px;
+    box-shadow:0 26px 64px rgba(239,78,23,.35);
+  }
+  #sc6 .fine{ margin-top:32px; font-family:'IBM Plex Mono',monospace; font-size:25px; color:var(--dim); }
+  #sc6 .foot{ width:100%; }
 </style>
 </head>
 <body>
@@ -312,6 +357,172 @@
     <div class="price"><span class="v">R$ 197</span><span class="p">/mês · plano Pro</span></div>
     <div class="btn">Link na Bio →</div>
     <div class="fine">3 dias grátis · sem cartão · contorna.ai</div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SC1 · CARROSSEL CAPA ===== -->
+<div class="story" id="sc1">
+  <div class="blob g" style="width:700px;height:700px;top:-190px;right:-210px;"></div>
+  <div class="blob o" style="width:600px;height:600px;bottom:-160px;left:-190px;"></div>
+  <div class="z">
+    <span class="eyebrow">Carrossel · salva pra reler depois</span>
+    <h1 class="display" style="font-size:80px;font-weight:800;line-height:1.08;letter-spacing:-.035em;margin-top:48px;">4 objeções<br>que travam<br>a sua venda.</h1>
+    <p class="sc-back" style="margin-top:40px;">E a <b>frase exata</b> pra virar cada uma — sem baixar o preço.</p>
+    <div class="sc-cap-list">
+      <div class="sc-cap-row"><span class="no">01</span><span>“Tá caro.”</span></div>
+      <div class="sc-cap-row"><span class="no">02</span><span>“Vou pensar.”</span></div>
+      <div class="sc-cap-row"><span class="no">03</span><span>“Preciso falar com meu sócio.”</span></div>
+      <div class="sc-cap-row"><span class="no">04</span><span>“Me manda por e-mail.”</span></div>
+    </div>
+    <div class="sc-swipe">arrasta pro lado →</div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SC2 · CARROSSEL TÁ CARO ===== -->
+<div class="story" id="sc2">
+  <div class="blob o" style="width:660px;height:660px;top:-190px;left:-190px;"></div>
+  <div class="blob g" style="width:580px;height:580px;bottom:-160px;right:-180px;"></div>
+  <div class="z">
+    <div class="sc-top">
+      <span class="eyebrow">Objeção de preço</span>
+      <span class="sc-idx">01 / 04</span>
+    </div>
+    <h1 class="sc-h1">“Tá caro.”</h1>
+    <div class="sc-label" style="margin-top:48px;">O que está por trás</div>
+    <p class="sc-back" style="margin-top:0;">Quase nunca é sobre o preço. É sobre <b>não enxergar o retorno</b> — e o desconto não resolve isso.</p>
+    <div class="sc-card erro">
+      <div class="sc-label warn">O erro comum</div>
+      <p>“Consigo fazer 10% pra você.”</p>
+    </div>
+    <div class="sc-card virada">
+      <div class="sc-label warn">A virada</div>
+      <p>“Caro comparado a quê? Ao custo de continuar perdendo esses deals?”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SC3 · CARROSSEL VOU PENSAR ===== -->
+<div class="story" id="sc3">
+  <div class="blob g" style="width:660px;height:660px;top:-190px;right:-190px;"></div>
+  <div class="blob o" style="width:580px;height:580px;bottom:-160px;left:-180px;"></div>
+  <div class="z">
+    <div class="sc-top">
+      <span class="eyebrow">Objeção de tempo</span>
+      <span class="sc-idx">02 / 04</span>
+    </div>
+    <h1 class="sc-h1">“Vou pensar.”</h1>
+    <div class="sc-label" style="margin-top:48px;">O que está por trás</div>
+    <p class="sc-back" style="margin-top:0;">Falta uma informação pra decidir — e <b>você ainda não sabe qual é</b>. Se deixar ir, ela nunca aparece.</p>
+    <div class="sc-card erro">
+      <div class="sc-label warn">O erro comum</div>
+      <p>“Sem problema, te ligo semana que vem.”</p>
+    </div>
+    <div class="sc-card virada">
+      <div class="sc-label warn">A virada</div>
+      <p>“Claro. Só pra eu te ajudar melhor: o que ainda precisa ficar claro pra virar um sim?”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SC4 · CARROSSEL FALO COM MEU SÓCIO ===== -->
+<div class="story" id="sc4">
+  <div class="blob o" style="width:660px;height:660px;top:-190px;left:-190px;"></div>
+  <div class="blob g" style="width:580px;height:580px;bottom:-160px;right:-180px;"></div>
+  <div class="z">
+    <div class="sc-top">
+      <span class="eyebrow">Objeção de decisão</span>
+      <span class="sc-idx">03 / 04</span>
+    </div>
+    <h1 class="sc-h1">“Falo com<br>meu sócio.”</h1>
+    <div class="sc-label" style="margin-top:36px;">O que está por trás</div>
+    <p class="sc-back" style="margin-top:0;">Você apresentou pra <b>quem não decide sozinho</b>. O erro aconteceu antes da proposta.</p>
+    <div class="sc-card erro">
+      <div class="sc-label warn">O erro comum</div>
+      <p>“Beleza, me avisa quando falar com ele.”</p>
+    </div>
+    <div class="sc-card virada">
+      <div class="sc-label warn">A virada</div>
+      <p>“Faz sentido. O que ele precisa ver pra topar? Preparo isso pra você levar.”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SC5 · CARROSSEL MANDA POR E-MAIL ===== -->
+<div class="story" id="sc5">
+  <div class="blob g" style="width:660px;height:660px;top:-190px;right:-190px;"></div>
+  <div class="blob o" style="width:580px;height:580px;bottom:-160px;left:-180px;"></div>
+  <div class="z">
+    <div class="sc-top">
+      <span class="eyebrow">Objeção de saída</span>
+      <span class="sc-idx">04 / 04</span>
+    </div>
+    <h1 class="sc-h1">“Manda por<br>e-mail.”</h1>
+    <div class="sc-label" style="margin-top:36px;">O que está por trás</div>
+    <p class="sc-back" style="margin-top:0;">É o “não” educado. <b>Sem próximo passo com data</b>, morre na caixa de entrada.</p>
+    <div class="sc-card erro">
+      <div class="sc-label warn">O erro comum</div>
+      <p>“Claro, já te mando tudo por e-mail!”</p>
+    </div>
+    <div class="sc-card virada">
+      <div class="sc-label warn">A virada</div>
+      <p>“Mando agora. Reservo quinta 10h pra gente ver juntos — se não fizer sentido, você me diz.”</p>
+    </div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SC6 · CARROSSEL CTA ===== -->
+<div class="story" id="sc6">
+  <div class="blob g" style="width:800px;height:800px;top:-220px;left:50%;transform:translateX(-50%);"></div>
+  <div class="blob o" style="width:660px;height:660px;bottom:-180px;left:50%;transform:translateX(-50%);"></div>
+  <div class="z">
+    <span class="eyebrow mid">Onde treinar isso</span>
+    <svg class="mark" viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+    <h1 class="display">Ler é fácil.<br>Responder na hora<br>é que trava.</h1>
+    <p class="sub">No Contorna AI seu time treina essas quatro contra uma IA que insiste — e recebe a nota do que respondeu.</p>
+    <div class="btn">Link na Bio →</div>
+    <div class="fine">3 dias grátis · sem cartão</div>
     <div class="foot">
       <div class="lock">
         <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>

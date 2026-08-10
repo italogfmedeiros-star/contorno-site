@@ -39,6 +39,12 @@ const STORIES = {
   s3: "stories/story3-como-funciona.png",
   s4: "stories/story4-mercados.png",
   s5: "stories/story5-cta.png",
+  sc1: "stories/carrossel1-capa.png",
+  sc2: "stories/carrossel2-tacaro.png",
+  sc3: "stories/carrossel3-voupensar.png",
+  sc4: "stories/carrossel4-socio.png",
+  sc5: "stories/carrossel5-email.png",
+  sc6: "stories/carrossel6-cta.png",
 };
 
 const REELS = {
