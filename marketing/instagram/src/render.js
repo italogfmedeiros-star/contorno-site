@@ -23,6 +23,12 @@ const FEED = {
   p3: "feed/post3-como-funciona.png",
   p4: "feed/post4-mercados.png",
   p5: "feed/post5-cta.png",
+  car1: "feed/carrossel1-capa.png",
+  car2: "feed/carrossel2-tacaro.png",
+  car3: "feed/carrossel3-voupensar.png",
+  car4: "feed/carrossel4-socio.png",
+  car5: "feed/carrossel5-email.png",
+  car6: "feed/carrossel6-cta.png",
 };
 
 const STORIES = {
