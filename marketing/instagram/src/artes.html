@@ -153,6 +153,28 @@
   }
   #p5 .fine{ margin-top:30px; font-family:'IBM Plex Mono',monospace; font-size:24px; color:var(--dim); }
 
+  /* ---- P6 BASTIDOR ---- */
+  #p6 .inner{ position:absolute; inset:0; padding:90px 70px; display:flex; flex-direction:column; }
+  #p6 h1{ font-size:64px; font-weight:800; letter-spacing:-.03em; line-height:1.12; margin-top:38px; }
+  #p6 .sub{ color:var(--dim); font-size:30px; line-height:1.5; margin-top:34px; max-width:900px; }
+  #p6 .cols{ display:flex; gap:20px; margin-top:36px; }
+  #p6 .col{
+    flex:1; background:#fff; border:1.5px solid var(--line); border-radius:24px;
+    padding:32px 28px; box-shadow:0 16px 40px rgba(27,25,20,.05);
+  }
+  #p6 .col .lbl{
+    font-family:'IBM Plex Mono',monospace; font-size:18px; letter-spacing:.1em; text-transform:uppercase;
+    padding-bottom:18px; border-bottom:1.5px solid var(--line);
+  }
+  #p6 .col.left .lbl{ color:var(--dim); }
+  #p6 .col.right .lbl{ color:var(--accent); }
+  #p6 .col ul{ margin-top:20px; display:flex; flex-direction:column; gap:18px; list-style:none; }
+  #p6 .col li{ display:flex; gap:12px; font-size:25px; line-height:1.32; color:var(--text); }
+  #p6 .col li .ic{ flex-shrink:0; font-family:'IBM Plex Mono',monospace; font-weight:700; }
+  #p6 .col.left li .ic{ color:var(--dim); }
+  #p6 .col.right li .ic{ color:var(--accent); }
+  #p6 .close{ font-size:42px; font-weight:800; line-height:1.25; letter-spacing:-.02em; margin-top:42px; }
+
   /* ---- CARROSSEL · 4 OBJEÇÕES (6 telas) ---- */
   .car .inner{ position:absolute; inset:0; padding:90px 70px; display:flex; flex-direction:column; }
   .car-top{ display:flex; align-items:center; justify-content:space-between; }
@@ -365,6 +387,43 @@
     <div class="price"><span class="v">R$ 197</span><span class="p">/mês · plano Pro</span></div>
     <div class="btn">Link na Bio →</div>
     <div class="fine">3 dias grátis · sem cartão · contorna.ai</div>
+  </div>
+</div>
+
+<!-- P6 BASTIDOR 1080x1350 -->
+<div class="board pt" id="p6">
+  <div class="blob g" style="width:640px;height:640px;top:-190px;right:-170px;"></div>
+  <div class="blob o" style="width:540px;height:540px;bottom:-150px;left:-160px;"></div>
+  <div class="inner">
+    <span class="eyebrow">Bastidor · por que criamos</span>
+    <h1 class="display">Ninguém treina objeção ouvindo <span class="strike">“não”</span> de quem quer te ver acertar.</h1>
+    <p class="sub">O roleplay interno tem um vício: o colega do outro lado torce por você. E na frente do cliente real ninguém torce.</p>
+    <div class="cols">
+      <div class="col left">
+        <div class="lbl">Roleplay com colega</div>
+        <ul>
+          <li><span class="ic">−</span><span>Entrega o argumento na sua mão</span></li>
+          <li><span class="ic">−</span><span>Aceita a primeira resposta</span></li>
+          <li><span class="ic">−</span><span>Encerra no primeiro “tá bom”</span></li>
+        </ul>
+      </div>
+      <div class="col right">
+        <div class="lbl">Cliente real</div>
+        <ul>
+          <li><span class="ic">+</span><span>Repete a objeção de três jeitos</span></li>
+          <li><span class="ic">+</span><span>Volta no preço quando você cede</span></li>
+          <li><span class="ic">+</span><span>Some sem nunca dizer não</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="close">Criamos o Contorna AI pra treinar<br><span style="color:var(--accent)">contra o segundo</span>.</p>
+    <div class="brand-footer">
+      <div class="brand-lock">
+        <svg width="52" height="52" viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="name">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
   </div>
 </div>
 

@@ -23,6 +23,7 @@ const FEED = {
   p3: "feed/post3-como-funciona.png",
   p4: "feed/post4-mercados.png",
   p5: "feed/post5-cta.png",
+  p6: "feed/post6-bastidor.png",
   car1: "feed/carrossel1-capa.png",
   car2: "feed/carrossel2-tacaro.png",
   car3: "feed/carrossel3-voupensar.png",
