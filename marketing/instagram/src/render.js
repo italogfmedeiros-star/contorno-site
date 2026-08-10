@@ -4,10 +4,11 @@
  *   node render.js            # tudo
  *   node render.js feed       # só as artes de feed (1080x1350 + perfil)
  *   node render.js stories    # só os stories (1080x1920)
+ *   node render.js reels      # só as capas de Reels (1080x1920) + ícones de destaque (1080x1080)
  *   node render.js pdf        # só o PDF do plano
  *
  * Requer Playwright com Chromium:  npm i -D playwright && npx playwright install chromium
- * Saídas vão para ../feed, ../stories e ../ (o PDF).
+ * Saídas vão para ../feed, ../stories, ../reels, ../destaques e ../ (o PDF).
  */
 const path = require("path");
 const { chromium } = require("playwright");
@@ -38,6 +39,20 @@ const STORIES = {
   s3: "stories/story3-como-funciona.png",
   s4: "stories/story4-mercados.png",
   s5: "stories/story5-cta.png",
+};
+
+const REELS = {
+  reel1: "reels/reel1-tacaro.png",
+  reel2: "reels/reel2-voupensar.png",
+  reel3: "reels/reel3-comofunciona.png",
+};
+
+const DESTAQUES = {
+  dest1: "destaques/destaque1-comece-aqui.png",
+  dest2: "destaques/destaque2-objecoes.png",
+  dest3: "destaques/destaque3-como-funciona.png",
+  dest4: "destaques/destaque4-mercados.png",
+  dest5: "destaques/destaque5-bastidor.png",
 };
 
 /** Espera as webfonts carregarem e falha alto se alguma não subiu. */
@@ -93,6 +108,12 @@ async function buildPdf(browser) {
     if (alvo === "all" || alvo === "stories") {
       console.log("stories:");
       await shootBoards(browser, "stories.html", STORIES, { width: 1200, height: 2000 });
+    }
+    if (alvo === "all" || alvo === "reels") {
+      console.log("reels:");
+      await shootBoards(browser, "reels-destaques.html", REELS, { width: 1200, height: 2000 });
+      console.log("destaques:");
+      await shootBoards(browser, "reels-destaques.html", DESTAQUES, { width: 1200, height: 1200 });
     }
     // o PDF embute as artes, então roda por último
     if (alvo === "all" || alvo === "pdf") {
