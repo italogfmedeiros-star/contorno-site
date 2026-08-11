@@ -46,6 +46,7 @@ const STORIES = {
   sc4: "stories/carrossel4-socio.png",
   sc5: "stories/carrossel5-email.png",
   sc6: "stories/carrossel6-cta.png",
+  sestreia1: "stories/carrossel-estreia1-capa.png",
 };
 
 const REELS = {

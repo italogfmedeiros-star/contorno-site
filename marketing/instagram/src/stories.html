@@ -202,6 +202,19 @@
   }
   #sc6 .fine{ margin-top:32px; font-family:'IBM Plex Mono',monospace; font-size:25px; color:var(--dim); }
   #sc6 .foot{ width:100%; }
+
+  /* ---- CARROSSEL DE ESTREIA — CAPA (STORY) ---- */
+  #sestreia1 .ghost{ position:absolute; top:130px; right:-110px; width:640px; height:640px; opacity:.07; z-index:0; }
+  #sestreia1 h1{ font-size:138px; font-weight:800; letter-spacing:-.045em; line-height:.98; margin-top:56px; position:relative; z-index:1; }
+  #sestreia1 .badges{ display:flex; gap:14px; flex-wrap:wrap; margin-top:50px; position:relative; z-index:1; }
+  #sestreia1 .sub{ color:var(--dim); font-size:37px; line-height:1.5; margin-top:50px; position:relative; z-index:1; }
+  #sestreia1 .stats{ display:flex; flex-direction:column; gap:16px; margin-top:56px; position:relative; z-index:1; }
+  #sestreia1 .stat{
+    display:flex; align-items:baseline; gap:22px; background:#fff; border:1.5px solid var(--line); border-radius:22px;
+    padding:26px 30px; box-shadow:0 16px 40px rgba(27,25,20,.05);
+  }
+  #sestreia1 .stat .n{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:44px; color:#00815F; flex:none; }
+  #sestreia1 .stat .l{ font-size:26px; color:var(--dim); line-height:1.3; }
 </style>
 </head>
 <body>
@@ -523,6 +536,32 @@
     <p class="sub">No Contorna AI seu time treina essas quatro contra uma IA que insiste — e recebe a nota do que respondeu.</p>
     <div class="btn">Link na Bio →</div>
     <div class="fine">3 dias grátis · Pronto em minutos</div>
+    <div class="foot">
+      <div class="lock">
+        <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
+        <span class="nm">Contorna AI</span>
+      </div>
+      <span class="site">contorna.ai</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CARROSSEL DE ESTREIA — CAPA ===== -->
+<div class="story" id="sestreia1">
+  <div class="blob g" style="width:760px;height:760px;top:-210px;right:-220px;"></div>
+  <div class="blob o" style="width:640px;height:640px;bottom:-180px;left:-190px;"></div>
+  <div class="z">
+    <svg class="ghost" viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="9" stroke-linecap="round"/><circle cx="67" cy="48" r="9" fill="#E6482F"/></svg>
+    <span class="eyebrow">Carrossel de estreia</span>
+    <h1 class="display">Estamos<br>no ar.</h1>
+    <div class="badges"><span class="chip">● No ar desde hoje</span></div>
+    <p class="sub">De ideia testada com vendedor de verdade a produto disponível pra qualquer time. Arrasta pra ver o que muda a partir de agora.</p>
+    <div class="stats">
+      <div class="stat"><span class="n">63</span><span class="l">pacotes prontos por mercado</span></div>
+      <div class="stat"><span class="n">24/7</span><span class="l">treino disponível quando quiser</span></div>
+      <div class="stat"><span class="n">3 dias</span><span class="l">grátis pra testar, sem complicação</span></div>
+    </div>
+    <div class="sc-swipe">arrasta pro lado →</div>
     <div class="foot">
       <div class="lock">
         <svg viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="13" stroke-linecap="round"/><circle cx="67" cy="48" r="10.5" fill="#E6482F"/></svg>
