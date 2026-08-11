@@ -225,9 +225,17 @@
 
   /* ---- CARROSSEL DE ESTREIA — CAPA ---- */
   #estreia1 .inner{ position:absolute; inset:0; padding:90px 70px; display:flex; flex-direction:column; }
-  #estreia1 h1{ font-size:132px; font-weight:800; letter-spacing:-.045em; line-height:.98; margin-top:48px; }
-  #estreia1 .badge{ margin-top:42px; }
-  #estreia1 .sub{ color:var(--dim); font-size:34px; line-height:1.5; margin-top:44px; max-width:840px; }
+  #estreia1 .ghost{ position:absolute; top:-60px; right:-90px; width:620px; height:620px; opacity:.07; z-index:0; }
+  #estreia1 h1{ font-size:132px; font-weight:800; letter-spacing:-.045em; line-height:.98; margin-top:48px; position:relative; z-index:1; }
+  #estreia1 .badges{ display:flex; gap:14px; flex-wrap:wrap; margin-top:42px; position:relative; z-index:1; }
+  #estreia1 .sub{ color:var(--dim); font-size:34px; line-height:1.5; margin-top:44px; max-width:840px; position:relative; z-index:1; }
+  #estreia1 .stats{ display:flex; gap:16px; margin-top:56px; position:relative; z-index:1; }
+  #estreia1 .stat{
+    flex:1; background:#fff; border:1.5px solid var(--line); border-radius:22px;
+    padding:28px 26px; box-shadow:0 16px 40px rgba(27,25,20,.05);
+  }
+  #estreia1 .stat .n{ font-family:'IBM Plex Mono',monospace; font-weight:600; font-size:44px; color:#00815F; line-height:1; }
+  #estreia1 .stat .l{ margin-top:10px; font-size:19px; color:var(--dim); line-height:1.3; }
 </style>
 </head>
 <body>
@@ -603,11 +611,19 @@
 <div class="board pt car" id="estreia1">
   <div class="blob g" style="width:700px;height:700px;top:-210px;right:-190px;"></div>
   <div class="blob o" style="width:580px;height:580px;bottom:-170px;left:-170px;"></div>
+  <svg class="ghost" viewBox="0 0 96 96" fill="none"><path d="M66.7 27.2 A28 28 0 1 0 66.7 68.8" stroke="#00B487" stroke-width="9" stroke-linecap="round"/><circle cx="67" cy="48" r="9" fill="#E6482F"/></svg>
   <div class="inner">
     <span class="eyebrow">Carrossel de estreia</span>
     <h1 class="display">Estamos<br>no ar.</h1>
-    <div class="badge"><span class="chip">● No ar desde hoje</span></div>
+    <div class="badges">
+      <span class="chip">● No ar desde hoje</span>
+    </div>
     <p class="sub">De ideia testada com vendedor de verdade a produto disponível pra qualquer time. Arrasta pra ver o que muda a partir de agora.</p>
+    <div class="stats">
+      <div class="stat"><div class="n">63</div><div class="l">pacotes prontos por mercado</div></div>
+      <div class="stat"><div class="n">24/7</div><div class="l">treino disponível quando quiser</div></div>
+      <div class="stat"><div class="n">3 dias</div><div class="l">grátis pra testar, sem complicação</div></div>
+    </div>
     <div class="car-swipe">arrasta pro lado →</div>
     <div class="brand-footer">
       <div class="brand-lock">
