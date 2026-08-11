@@ -31,6 +31,7 @@ const FEED = {
   car4: "feed/carrossel4-socio.png",
   car5: "feed/carrossel5-email.png",
   car6: "feed/carrossel6-cta.png",
+  estreia1: "feed/carrossel-estreia1-capa.png",
 };
 
 const STORIES = {
